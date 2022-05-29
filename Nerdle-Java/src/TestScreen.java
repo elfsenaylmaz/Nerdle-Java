@@ -16,8 +16,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class TestScreen extends JFrame {
-
 	private JPanel contentPane;
+	private Generator generator;
 	//kaldırılacak
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -33,6 +33,9 @@ public class TestScreen extends JFrame {
 	}
 
 	public TestScreen() {
+		
+		generator = new Generator();
+		
 		setTitle("NERDLE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TestScreen.class.getResource("/icons/equals.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,7 +50,18 @@ public class TestScreen extends JFrame {
 		lblNewLabel_1.setBounds(10, 240, 294, 13);
 		contentPane.add(lblNewLabel_1);
 		
+		JLabel equationLabel = new JLabel(generator.generateEquation());
+		equationLabel.setFont(new Font("Century Gothic", Font.BOLD, 15));
+		equationLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		equationLabel.setBounds(85, 88, 273, 39);
+		contentPane.add(equationLabel);
+		
 		JButton btnNewButton = new JButton("YENİDEN ÜRET");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				equationLabel.setText(generator.generateEquation());
+			}
+		});
 		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		btnNewButton.setBounds(152, 136, 140, 50);
 		contentPane.add(btnNewButton);
@@ -69,11 +83,6 @@ public class TestScreen extends JFrame {
 		mainScreenButton.setBounds(10, 10, 30, 30);
 		contentPane.add(mainScreenButton);
 		
-		JLabel equationLabel = new JLabel("");
-		equationLabel.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		equationLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		equationLabel.setBounds(85, 88, 273, 39);
-		contentPane.add(equationLabel);
 	}
 
 }
