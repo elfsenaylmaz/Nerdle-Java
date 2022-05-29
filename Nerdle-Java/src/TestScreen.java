@@ -53,7 +53,7 @@ public class TestScreen extends JFrame {
 		JLabel equationLabel = new JLabel(generator.generateEquation());
 		equationLabel.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		equationLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		equationLabel.setBounds(85, 88, 273, 39);
+		equationLabel.setBounds(85, 62, 273, 39);
 		contentPane.add(equationLabel);
 		
 		JButton btnNewButton = new JButton("YENİDEN ÜRET");
@@ -82,6 +82,11 @@ public class TestScreen extends JFrame {
 		mainScreenButton.setIcon(new ImageIcon(TestScreen.class.getResource("/icons/home.png")));
 		mainScreenButton.setBounds(10, 10, 30, 30);
 		contentPane.add(mainScreenButton);
+		
+		JLabel digitLabel = new JLabel("");
+		digitLabel.setFont(new Font("Century Gothic", Font.BOLD, 15));
+		digitLabel.setBounds(85, 101, 273, 25);
+		contentPane.add(digitLabel);
 		
 	}
 
