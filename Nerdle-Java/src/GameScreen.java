@@ -14,29 +14,26 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
 public class GameScreen extends JFrame {
 
+	private Gameplay gameplay;
+	private String equation;
 	private JPanel contentPane;
 	private JTextField[][] txtMatris;
 	private JPanel panel;
-	//kaldırılacak
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GameScreen frame = new GameScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	public GameScreen() {
+	
+	public GameScreen(String equation) {
+		
+		gameplay = new Gameplay();
+		this.equation = equation;
+		System.out.println(equation);							////////////////////////////////////////////////////////////////////////
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameScreen.class.getResource("/icons/equals.png")));
 		setTitle("NERDLE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +49,15 @@ public class GameScreen extends JFrame {
 		panel.setLayout(null);
 		
 		//bundan sonra çağırılıcak kaç digit olmasını istediğim bir ifle çağrılacak
-		create9DigitField();
+		if(equation.length() == 7) {
+			create7DigitField();
+		}
+		else if(equation.length() == 8) {
+			create8DigitField();
+		}
+		else {
+			create9DigitField();
+		}
 		
 		JLabel lblNewLabel = new JLabel("timer ekle");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -61,6 +66,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton button0 = new JButton("");
+		button0.setFocusable(false);
+		button0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button0.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button0.png")));
 		button0.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button0Rollover.png")));
 		button0.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/button0Selected.png")));
@@ -68,6 +78,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(button0);
 		
 		JButton button1 = new JButton("");
+		button1.setFocusable(false);
 		button1.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button1.png")));
 		button1.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button1Rollover.png")));
 		button1.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/button1Selected.png")));
@@ -75,6 +86,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(button1);
 		
 		JButton button2 = new JButton("");
+		button2.setFocusable(false);
 		button2.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button2.png")));
 		button2.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button2Rollover.png")));
 		button2.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/button2Selected.png")));
@@ -82,6 +94,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(button2);
 		
 		JButton button3 = new JButton("");
+		button3.setFocusable(false);
 		button3.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button3.png")));
 		button3.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button3Rollover.png")));
 		button3.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/button3Selected.png")));
@@ -89,6 +102,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(button3);
 		
 		JButton button4 = new JButton("");
+		button4.setFocusable(false);
 		button4.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button4.png")));
 		button4.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button4Rollover.png")));
 		button4.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/button4Selected.png")));
@@ -96,6 +110,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(button4);
 		
 		JButton button5 = new JButton("");
+		button5.setFocusable(false);
 		button5.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button5.png")));
 		button5.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button5Rollover.png")));
 		button5.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/button5Selected.png")));
@@ -103,6 +118,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(button5);
 		
 		JButton button6 = new JButton("");
+		button6.setFocusable(false);
 		button6.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button6.png")));
 		button6.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button6Rollover.png")));
 		button6.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/button6Selected.png")));
@@ -110,6 +126,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(button6);
 		
 		JButton button7 = new JButton("");
+		button7.setFocusable(false);
 		button7.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button7.png")));
 		button7.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button7Rollover.png")));
 		button7.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/button7Selected.png")));
@@ -117,6 +134,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(button7);
 		
 		JButton button8 = new JButton("");
+		button8.setFocusable(false);
 		button8.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button8.png")));
 		button8.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button8Rollover.png")));
 		button8.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/button8Selected.png")));
@@ -124,6 +142,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(button8);
 		
 		JButton button9 = new JButton("");
+		button9.setFocusable(false);
 		button9.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button9.png")));
 		button9.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button9Rollover.png")));
 		button9.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/button9Selected.png")));
@@ -136,6 +155,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JButton plus = new JButton("");
+		plus.setFocusable(false);
 		plus.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/plus.png")));
 		plus.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/plusRollover.png")));
 		plus.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/plusSelected.png")));
@@ -143,6 +163,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(plus);
 		
 		JButton minus = new JButton("");
+		minus.setFocusable(false);
 		minus.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/minus.png")));
 		minus.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/minusRollover.png")));
 		minus.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/minusSelected.png")));
@@ -150,6 +171,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(minus);
 		
 		JButton multi = new JButton("");
+		multi.setFocusable(false);
 		multi.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/multi.png")));
 		multi.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/multiRollover.png")));
 		multi.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/multiSelected.png")));
@@ -157,6 +179,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(multi);
 		
 		JButton divide = new JButton("");
+		divide.setFocusable(false);
 		divide.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/divide.png")));
 		divide.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/divideRollover.png")));
 		divide.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/divideSelected.png")));
@@ -164,6 +187,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(divide);
 		
 		JButton equals = new JButton("");
+		equals.setFocusable(false);
 		equals.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/equals.png")));
 		equals.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/equalsRollover.png")));
 		equals.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/equalsSelected.png")));
@@ -171,6 +195,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(equals);
 		
 		JButton delete = new JButton("");
+		delete.setFocusable(false);
 		delete.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/delete.png")));
 		delete.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/deleteRollover.png")));
 		delete.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/deleteSelected.png")));
@@ -178,6 +203,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(delete);
 		
 		JButton tahminEt = new JButton("");
+		tahminEt.setFocusable(false);
 		tahminEt.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/tahminEt.png")));
 		tahminEt.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/tahminEtRollover.png")));
 		tahminEt.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/tahminEtSelected.png")));
@@ -185,6 +211,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(tahminEt);
 		
 		JButton sonraBitir = new JButton("");
+		sonraBitir.setFocusable(false);
 		sonraBitir.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/sonraBitir.png")));
 		sonraBitir.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/sonraBitirRollover.png")));
 		sonraBitir.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/sonraBitirSelected.png")));
@@ -223,5 +250,10 @@ public class GameScreen extends JFrame {
 				panel.add(txtMatris[satir][sutun]);
 			}
 		}
+				
+	}
+	
+	public String getEquation() {
+		return equation;
 	}
 }

@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class MainScreen extends JFrame {
-
+	private Gameplay gameplay;
 	private JPanel contentPane;
 	//kaldırılacak
 	public static void main(String[] args) {
@@ -34,6 +34,9 @@ public class MainScreen extends JFrame {
 	}
 
 	public MainScreen() {
+		
+		gameplay = new Gameplay();
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainScreen.class.getResource("/icons/equals.png")));
 		setTitle("NERDLE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -117,6 +120,12 @@ public class MainScreen extends JFrame {
 		contentPane.add(sureOyun);
 		
 		JButton yeniButton = new JButton("YENİ OYUN");
+		yeniButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.newGame();
+				dispose();
+			}
+		});
 		yeniButton.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		yeniButton.setBounds(375, 377, 120, 50);
 		contentPane.add(yeniButton);

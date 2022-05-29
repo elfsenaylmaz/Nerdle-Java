@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 public class TestScreen extends JFrame {
 	private JPanel contentPane;
 	private Generator generator;
+	private String equation;
 	//kaldırılacak
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -35,6 +36,7 @@ public class TestScreen extends JFrame {
 	public TestScreen() {
 		
 		generator = new Generator();
+		equation = generator.generateEquation();
 		
 		setTitle("NERDLE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TestScreen.class.getResource("/icons/equals.png")));
@@ -50,16 +52,24 @@ public class TestScreen extends JFrame {
 		lblNewLabel_1.setBounds(10, 240, 294, 13);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel equationLabel = new JLabel(generator.generateEquation());
+		JLabel equationLabel = new JLabel(equation);
 		equationLabel.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		equationLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		equationLabel.setBounds(85, 62, 273, 39);
 		contentPane.add(equationLabel);
 		
+		JLabel digitLabel = new JLabel(equation.length() + " Digits");
+		digitLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		digitLabel.setFont(new Font("Century Gothic", Font.BOLD, 15));
+		digitLabel.setBounds(85, 101, 273, 25);
+		contentPane.add(digitLabel);
+		
 		JButton btnNewButton = new JButton("YENİDEN ÜRET");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				equationLabel.setText(generator.generateEquation());
+				equation = generator.generateEquation();
+				equationLabel.setText(equation);
+				digitLabel.setText(equation.length() + " Digits");			
 			}
 		});
 		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 15));
@@ -83,10 +93,6 @@ public class TestScreen extends JFrame {
 		mainScreenButton.setBounds(10, 10, 30, 30);
 		contentPane.add(mainScreenButton);
 		
-		JLabel digitLabel = new JLabel("");
-		digitLabel.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		digitLabel.setBounds(85, 101, 273, 25);
-		contentPane.add(digitLabel);
 		
 	}
 
