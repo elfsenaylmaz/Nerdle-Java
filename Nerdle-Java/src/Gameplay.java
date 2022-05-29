@@ -6,11 +6,14 @@ import javax.swing.JTextField;
 public class Gameplay {
 	
 	private Generator generator;
+	private Checker checker;
 	private String equation;
+	private String guessEquation;
 	private JTextField[][] txtMatris;
 	private int row, column;
 	
 	public Gameplay(String equation) {
+		checker = new Checker();
 		this.equation = equation;
 		row = 0;
 		column = 0;
@@ -46,6 +49,20 @@ public class Gameplay {
 				}
 				return;
 			}
+		}
+	}
+	
+	public void guessButtonActivate() {
+		guessEquation = "";
+		for(int i = 0; i<equation.length(); ++i) {
+			guessEquation += txtMatris[row][i].getText();
+		}
+		checker.setEquation(guessEquation);
+		if(checker.check()) {
+			/////////////////////////////////////////////////////TAHMİN DOĞRU RENKLENDİR
+		}
+		else {
+			/////////////////////////////////////////////////////TAHMİN YANLIŞ POP-UP FİLAN AYARLA BİR ŞEYLER
 		}
 	}
 	

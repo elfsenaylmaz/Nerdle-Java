@@ -286,6 +286,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(delete);
 		
 		JButton tahminEt = new JButton("");
+		tahminEt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.guessButtonActivate();
+			}
+		});
 		tahminEt.setFocusable(false);
 		tahminEt.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/tahminEt.png")));
 		tahminEt.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/tahminEtRollover.png")));
