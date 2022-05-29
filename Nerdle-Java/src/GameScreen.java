@@ -51,7 +51,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		//bundan sonra çağırılıcak;
+		//bundan sonra çağırılıcak kaç digit olmasını istediğim bir ifle çağrılacak
 		create9DigitField();
 		
 		JLabel lblNewLabel = new JLabel("timer ekle");
