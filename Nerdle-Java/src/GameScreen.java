@@ -124,26 +124,44 @@ public class GameScreen extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JButton plus = new JButton("");
+		plus.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/plus.png")));
+		plus.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/plusRollover.png")));
+		plus.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/plusSelected.png")));
 		plus.setBounds(160, 533, 50, 50);
 		contentPane.add(plus);
 		
 		JButton minus = new JButton("");
+		minus.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/minus.png")));
+		minus.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/minusRollover.png")));
+		minus.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/minusSelected.png")));
 		minus.setBounds(220, 533, 50, 50);
 		contentPane.add(minus);
 		
 		JButton multi = new JButton("");
+		multi.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/multi.png")));
+		multi.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/multiRollover.png")));
+		multi.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/multiSelected.png")));
 		multi.setBounds(280, 533, 50, 50);
 		contentPane.add(multi);
 		
 		JButton divide = new JButton("");
+		divide.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/divide.png")));
+		divide.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/divideRollover.png")));
+		divide.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/divideSelected.png")));
 		divide.setBounds(340, 533, 50, 50);
 		contentPane.add(divide);
 		
 		JButton equals = new JButton("");
+		equals.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/equals.png")));
+		equals.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/equalsRollover.png")));
+		equals.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/equalsSelected.png")));
 		equals.setBounds(400, 533, 50, 50);
 		contentPane.add(equals);
 		
 		JButton delete = new JButton("");
+		delete.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/delete.png")));
+		delete.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/deleteRollover.png")));
+		delete.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/deleteSelected.png")));
 		delete.setBounds(460, 533, 75, 50);
 		contentPane.add(delete);
 		
