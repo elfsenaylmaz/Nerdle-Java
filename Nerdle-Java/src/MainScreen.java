@@ -4,6 +4,7 @@ import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
@@ -18,7 +19,7 @@ import java.awt.event.ActionEvent;
 public class MainScreen extends JFrame {
 
 	private JPanel contentPane;
-
+	//kaldırılacak
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -126,6 +127,18 @@ public class MainScreen extends JFrame {
 		contentPane.add(devamButton);
 		
 		JButton testButton = new JButton("TEST");
+		testButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					TestScreen frame = new TestScreen();
+					frame.setVisible(true);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Error!");
+					//e1.printStackTrace();
+				}
+				dispose();
+			}
+		});
 		testButton.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		testButton.setBounds(375, 497, 120, 50);
 		contentPane.add(testButton);

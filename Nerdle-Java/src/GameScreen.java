@@ -23,7 +23,7 @@ public class GameScreen extends JFrame {
 	private JPanel contentPane;
 	private JTextField[][] txtMatris;
 	private JPanel panel;
-	
+	//kaldırılacak
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -223,11 +223,5 @@ public class GameScreen extends JFrame {
 				panel.add(txtMatris[satir][sutun]);
 			}
 		}
-	}
-	public JTextField[][] getTxtMatris() {
-		return txtMatris;
-	}
-	public void setTxtMatris(JTextField[][] txtMatris) {
-		this.txtMatris = txtMatris;
 	}
 }
