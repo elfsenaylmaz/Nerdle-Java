@@ -14,6 +14,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class MainScreen extends JFrame {
@@ -34,8 +36,6 @@ public class MainScreen extends JFrame {
 	}
 
 	public MainScreen() {
-		
-		gameplay = new Gameplay();
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainScreen.class.getResource("/icons/equals.png")));
 		setTitle("NERDLE");
@@ -122,8 +122,19 @@ public class MainScreen extends JFrame {
 		JButton yeniButton = new JButton("YENİ OYUN");
 		yeniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameplay.newGame();
-				dispose();
+				try {
+					GameScreen frame = new GameScreen();
+					frame.addWindowFocusListener(new WindowAdapter() {
+					    public void windowGainedFocus(WindowEvent e) {
+					        
+					    }
+					});
+					frame.setVisible(true);
+					dispose();
+				} catch (Exception ex) {
+					///////////////////////////////////////////////////////////////////////////////////////
+				}
+				
 			}
 		});
 		yeniButton.setFont(new Font("Century Gothic", Font.BOLD, 15));

@@ -16,6 +16,10 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -23,16 +27,17 @@ import java.awt.Toolkit;
 public class GameScreen extends JFrame {
 
 	private Gameplay gameplay;
+	private Generator generator;
 	private String equation;
 	private JPanel contentPane;
 	private JTextField[][] txtMatris;
 	private JPanel panel;
 	
-	public GameScreen(String equation) {
-		
-		gameplay = new Gameplay();
-		this.equation = equation;
-		System.out.println(equation);							////////////////////////////////////////////////////////////////////////
+	public GameScreen() {
+		//////////////////////////////////YENİ OYUN MU ESKİ OYUN MU PARAMETRE İLE KONTROL EDİLECEK
+		generator = new Generator();
+		equation = generator.generateEquation();
+		gameplay = new Gameplay(equation);
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameScreen.class.getResource("/icons/equals.png")));
 		setTitle("NERDLE");
@@ -57,7 +62,9 @@ public class GameScreen extends JFrame {
 		}
 		else {
 			create9DigitField();
-		}
+		}	
+		
+		gameplay.setTxtMatris(txtMatris);
 		
 		JLabel lblNewLabel = new JLabel("timer ekle");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -69,6 +76,7 @@ public class GameScreen extends JFrame {
 		button0.setFocusable(false);
 		button0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("0");
 			}
 		});
 		button0.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button0.png")));
@@ -78,6 +86,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(button0);
 		
 		JButton button1 = new JButton("");
+		button1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("1");
+			}
+		});
 		button1.setFocusable(false);
 		button1.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button1.png")));
 		button1.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button1Rollover.png")));
@@ -86,6 +99,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(button1);
 		
 		JButton button2 = new JButton("");
+		button2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("2");
+			}
+		});
 		button2.setFocusable(false);
 		button2.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button2.png")));
 		button2.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button2Rollover.png")));
@@ -94,6 +112,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(button2);
 		
 		JButton button3 = new JButton("");
+		button3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("3");
+			}
+		});
 		button3.setFocusable(false);
 		button3.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button3.png")));
 		button3.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button3Rollover.png")));
@@ -102,6 +125,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(button3);
 		
 		JButton button4 = new JButton("");
+		button4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("4");
+			}
+		});
 		button4.setFocusable(false);
 		button4.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button4.png")));
 		button4.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button4Rollover.png")));
@@ -110,6 +138,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(button4);
 		
 		JButton button5 = new JButton("");
+		button5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("5");
+			}
+		});
 		button5.setFocusable(false);
 		button5.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button5.png")));
 		button5.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button5Rollover.png")));
@@ -118,6 +151,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(button5);
 		
 		JButton button6 = new JButton("");
+		button6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("6");
+			}
+		});
 		button6.setFocusable(false);
 		button6.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button6.png")));
 		button6.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button6Rollover.png")));
@@ -126,6 +164,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(button6);
 		
 		JButton button7 = new JButton("");
+		button7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("7");
+			}
+		});
 		button7.setFocusable(false);
 		button7.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button7.png")));
 		button7.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button7Rollover.png")));
@@ -134,6 +177,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(button7);
 		
 		JButton button8 = new JButton("");
+		button8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("8");
+			}
+		});
 		button8.setFocusable(false);
 		button8.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button8.png")));
 		button8.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button8Rollover.png")));
@@ -142,6 +190,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(button8);
 		
 		JButton button9 = new JButton("");
+		button9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("9");
+			}
+		});
 		button9.setFocusable(false);
 		button9.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/button9.png")));
 		button9.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/button9Rollover.png")));
@@ -155,6 +208,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JButton plus = new JButton("");
+		plus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("+");
+			}
+		});
 		plus.setFocusable(false);
 		plus.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/plus.png")));
 		plus.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/plusRollover.png")));
@@ -163,6 +221,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(plus);
 		
 		JButton minus = new JButton("");
+		minus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("-");
+			}
+		});
 		minus.setFocusable(false);
 		minus.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/minus.png")));
 		minus.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/minusRollover.png")));
@@ -171,6 +234,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(minus);
 		
 		JButton multi = new JButton("");
+		multi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("*");
+			}
+		});
 		multi.setFocusable(false);
 		multi.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/multi.png")));
 		multi.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/multiRollover.png")));
@@ -179,6 +247,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(multi);
 		
 		JButton divide = new JButton("");
+		divide.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("/");
+			}
+		});
 		divide.setFocusable(false);
 		divide.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/divide.png")));
 		divide.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/divideRollover.png")));
@@ -187,6 +260,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(divide);
 		
 		JButton equals = new JButton("");
+		equals.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.inputButtonActivate("=");
+			}
+		});
 		equals.setFocusable(false);
 		equals.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/equals.png")));
 		equals.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/equalsRollover.png")));
@@ -195,6 +273,11 @@ public class GameScreen extends JFrame {
 		contentPane.add(equals);
 		
 		JButton delete = new JButton("");
+		delete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.deleteButtonActivate();
+			}
+		});
 		delete.setFocusable(false);
 		delete.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/delete.png")));
 		delete.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/deleteRollover.png")));
@@ -225,6 +308,7 @@ public class GameScreen extends JFrame {
 			for(int sutun = 0; sutun < 7; sutun++) {
 				txtMatris[satir][sutun] = new JTextField("");
 				txtMatris[satir][sutun].setBounds(163+70*sutun, 10+70*satir, 60, 60);
+				txtMatris[satir][sutun].setHorizontalAlignment(SwingConstants.CENTER);
 				panel.add(txtMatris[satir][sutun]);
 			}
 		}
@@ -236,6 +320,7 @@ public class GameScreen extends JFrame {
 			for(int sutun = 0; sutun < 8; sutun++) {
 				txtMatris[satir][sutun] = new JTextField("");
 				txtMatris[satir][sutun].setBounds(130+70*sutun, 10+70*satir, 60, 60);
+				txtMatris[satir][sutun].setHorizontalAlignment(SwingConstants.CENTER);
 				panel.add(txtMatris[satir][sutun]);
 			}
 		}
@@ -247,13 +332,17 @@ public class GameScreen extends JFrame {
 			for(int sutun = 0; sutun < 9; sutun++) {
 				txtMatris[satir][sutun] = new JTextField("");
 				txtMatris[satir][sutun].setBounds(95+70*sutun, 10+70*satir, 60, 60);
+				txtMatris[satir][sutun].setHorizontalAlignment(SwingConstants.CENTER);
 				panel.add(txtMatris[satir][sutun]);
 			}
-		}
-				
+		}				
 	}
 	
 	public String getEquation() {
 		return equation;
+	}
+	
+	public JTextField[][] getMatris() {
+		return txtMatris;
 	}
 }
