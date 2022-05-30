@@ -4,33 +4,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 import java.awt.Toolkit;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
-public class WinScreen extends JFrame {
-	private Gameplay gameplay;
+public class LoseScreen extends JFrame {
+
 	private JPanel contentPane;
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					WinScreen frame = new WinScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	public WinScreen() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(WinScreen.class.getResource("/icons/equals.png")));
+
+	public LoseScreen() {
 		setTitle("NERDLE");
-		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LoseScreen.class.getResource("/icons/equals.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -39,7 +25,6 @@ public class WinScreen extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("ANA SAYFA");
-		btnNewButton.setIcon(new ImageIcon(WinScreen.class.getResource("/icons/home (1).png")));
 		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		btnNewButton.setBounds(150, 159, 137, 43);
 		contentPane.add(btnNewButton);
@@ -49,15 +34,17 @@ public class WinScreen extends JFrame {
 		lblNewLabel_1.setBounds(10, 240, 294, 13);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel = new JLabel("TEBRİKLER!");
+		JLabel lblNewLabel = new JLabel("KAYBETTİNİZ!");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
-		lblNewLabel.setBounds(150, 46, 137, 43);
+		lblNewLabel.setBounds(150, 55, 137, 43);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("DENKLEMİ BULMA SÜRENİZ: ");
+		JLabel lblNewLabel_2 = new JLabel("DOĞRU DENKLEM: ");
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.BOLD, 17));
-		lblNewLabel_2.setBounds(91, 99, 275, 28);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(63, 108, 313, 30);
 		contentPane.add(lblNewLabel_2);
 	}
+
 }
