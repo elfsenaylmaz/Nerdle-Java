@@ -13,16 +13,27 @@ public class Gameplay {
 	private String guessEquation;
 	private JTextField[][] txtMatris;
 	private int row, column;
+	private int secs;
+	private boolean isGameOver;
 	
 	public Gameplay(String equation) {
 		checker = new Checker();
 		this.equation = equation;
 		row = 0;
 		column = 0;
+		isGameOver = false;
 	}
 	
 	public void generateEquation() {
 		equation = generator.generateEquation();
+	}
+	
+	public int getSecs() {
+		return secs;
+	}
+	
+	public void incrementSecs() {
+		secs++;
 	}
 	
 	public void inputButtonActivate(String buttonText) {
@@ -59,30 +70,47 @@ public class Gameplay {
 		for(int i = 0; i<equation.length(); ++i) {
 			guessEquation += txtMatris[row][i].getText();
 		}
-		checker.setEquation(guessEquation);
-		System.out.println(equation);
-		if(checker.check()) {
-			/////////////////////////////////////////////////////TAHMİN DOĞRU RENKLENDİR
-			if(!colorButtons()) {
-				if(row != 5) {
-					setEnableButtons();
-					row++;
-					txtMatris[row][0].requestFocusInWindow();
+		if(equation.length() == guessEquation.length()) {
+			checker.setEquation(guessEquation);
+			System.out.println(equation);
+			if(checker.check()) {
+				/////////////////////////////////////////////////////TAHMİN DOĞRU RENKLENDİR
+				if(!colorButtons()) {
+					if(row != 5) {
+						setEnableButtons();
+						row++;
+						txtMatris[row][0].requestFocusInWindow();
+					}
+					else {												//TAHMİN HAKKI BİTTİ
+						isGameOver = true;
+						JOptionPane.showMessageDialog(null, "basaramadin oc!");			//ANA SAYFAYA DON
+					}
 				}
-				else {												//TAHMİN HAKKI BİTTİ
-					JOptionPane.showMessageDialog(null, "basaramadin oc!");			//ANA SAYFAYA DON
+				else {
+					isGameOver = true;			//ANA SAYFAYA DON
+					try {
+						WinScreen frame = new WinScreen();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
+				
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "basardin oc!");			//ANA SAYFAYA DON
+				JOptionPane.showMessageDialog(null, "gecersiz islem oc!");
 			}
-			
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "gecersiz islem oc!");
 		}
+		
 	}
 	
+	public boolean isGameOver() {
+		return isGameOver;
+	}
+
 	public void setEnableButtons() {
 		for(JTextField text : txtMatris[row]) {
 			text.setEnabled(false);

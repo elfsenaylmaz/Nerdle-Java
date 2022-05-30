@@ -21,6 +21,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
@@ -32,12 +34,14 @@ public class GameScreen extends JFrame {
 	private JPanel contentPane;
 	private JTextField[][] txtMatris;
 	private JPanel panel;
+	private Timer timer;
 	
 	public GameScreen() {
 		//////////////////////////////////YENİ OYUN MU ESKİ OYUN MU PARAMETRE İLE KONTROL EDİLECEK
 		generator = new Generator();
 		equation = generator.generateEquation();
 		gameplay = new Gameplay(equation);
+		timer = new Timer();
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameScreen.class.getResource("/icons/equals.png")));
 		setTitle("NERDLE");
@@ -65,11 +69,35 @@ public class GameScreen extends JFrame {
 		
 		gameplay.setTxtMatris(txtMatris);
 		
-		JLabel lblNewLabel = new JLabel("timer ekle");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
-		lblNewLabel.setBounds(740, 22, 121, 39);
-		contentPane.add(lblNewLabel);
+		JLabel timerLabel = new JLabel("timer ekle");
+		timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		timerLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
+		timerLabel.setBounds(740, 22, 121, 39);
+		contentPane.add(timerLabel);
+		
+		TimerTask timerTask = new TimerTask() {
+			int seconds = 0;
+			int minutes = 0;
+			public void run() {
+				gameplay.incrementSecs();
+				seconds = gameplay.getSecs();
+				minutes = seconds/60;
+				seconds = seconds%60;
+				if(minutes < 10) {
+					if(seconds < 10)
+						timerLabel.setText("0" + minutes + ":0" +seconds);
+					else
+						timerLabel.setText("0" + minutes + ":" +seconds);
+				}
+				else {
+					if(seconds < 10)
+						timerLabel.setText("" + minutes + ":0" +seconds);
+					else
+						timerLabel.setText("" + minutes + ":" +seconds);
+				}
+			}
+		};
+		timer.schedule(timerTask, 0, 1000);
 		
 		JButton button0 = new JButton("");
 		button0.setFocusable(false);
@@ -288,6 +316,8 @@ public class GameScreen extends JFrame {
 		tahminEt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameplay.guessButtonActivate();
+				if(gameplay.isGameOver())
+					timer.cancel();
 			}
 		});
 		tahminEt.setFocusable(false);
