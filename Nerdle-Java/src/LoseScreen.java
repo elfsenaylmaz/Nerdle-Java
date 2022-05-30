@@ -9,12 +9,14 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoseScreen extends JFrame {
 
 	private JPanel contentPane;
 
-	public LoseScreen() {
+	public LoseScreen(String equation) {
 		setTitle("NERDLE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LoseScreen.class.getResource("/icons/equals.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,6 +27,16 @@ public class LoseScreen extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("ANA SAYFA");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					MainScreen frame = new MainScreen();
+					frame.setVisible(true);
+					dispose();
+				} catch (Exception ex) {
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		btnNewButton.setBounds(150, 159, 137, 43);
 		contentPane.add(btnNewButton);
@@ -40,7 +52,7 @@ public class LoseScreen extends JFrame {
 		lblNewLabel.setBounds(150, 55, 137, 43);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("DOĞRU DENKLEM: ");
+		JLabel lblNewLabel_2 = new JLabel("DOĞRU DENKLEM: " + equation);
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.BOLD, 17));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(63, 108, 313, 30);

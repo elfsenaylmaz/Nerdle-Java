@@ -128,13 +128,19 @@ public class Gameplay {
 					}
 					else {												//TAHMİN HAKKI BİTTİ
 						isGameOver = true;
-						JOptionPane.showMessageDialog(null, "basaramadin oc!");			//ANA SAYFAYA DON
 						statistics.setUnsuccessfulCount(statistics.getUnsuccessfulCount() + 1);
 						statistics.setContinue(false);
 						try {
 							in.writeObject(statistics);
 						} catch (IOException e1) {
 							e1.printStackTrace();
+						}
+						
+						try {
+							LoseScreen loseFrame = new LoseScreen(equation);
+							loseFrame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
 					}
 				}
@@ -160,11 +166,11 @@ public class Gameplay {
 				
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "gecersiz islem oc!");
+				JOptionPane.showMessageDialog(null, "Gecersiz Islem!");
 			}
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "gecersiz islem oc!");
+			JOptionPane.showMessageDialog(null, "Gecersiz Islem!");
 		}
 		
 	}
