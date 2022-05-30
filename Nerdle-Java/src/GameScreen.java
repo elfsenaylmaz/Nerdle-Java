@@ -35,12 +35,21 @@ public class GameScreen extends JFrame {
 	private JTextField[][] txtMatris;
 	private JPanel panel;
 	private Timer timer;
+	private Statistics statistics;
 	
-	public GameScreen() {
+	public GameScreen(Statistics statistics) {
 		//////////////////////////////////YENİ OYUN MU ESKİ OYUN MU PARAMETRE İLE KONTROL EDİLECEK
+		this.statistics = statistics;
 		generator = new Generator();
-		equation = generator.generateEquation();
-		gameplay = new Gameplay(equation);
+		
+		if(statistics.isContinue() == false) {
+			equation = generator.generateEquation();
+		}
+		else {
+			equation = statistics.getEquation();
+		}
+			
+		gameplay = new Gameplay(equation, statistics);
 		timer = new Timer();
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameScreen.class.getResource("/icons/equals.png")));
@@ -57,6 +66,7 @@ public class GameScreen extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
+		
 		if(equation.length() == 7) {
 			create7DigitField();
 		}
@@ -67,6 +77,11 @@ public class GameScreen extends JFrame {
 			create9DigitField();
 		}	
 		
+		if(statistics.isContinue()) {
+			gameplay.setSecs(statistics.getSecs());
+			gameplay.setRow(statistics.getRow());
+		}
+			
 		gameplay.setTxtMatris(txtMatris);
 		
 		JLabel timerLabel = new JLabel("timer ekle");
@@ -328,6 +343,12 @@ public class GameScreen extends JFrame {
 		contentPane.add(tahminEt);
 		
 		JButton sonraBitir = new JButton("");
+		sonraBitir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameplay.sonraBitirButtonActivate();
+				dispose();
+			}
+		});
 		sonraBitir.setFocusable(false);
 		sonraBitir.setIcon(new ImageIcon(GameScreen.class.getResource("/icons/sonraBitir.png")));
 		sonraBitir.setRolloverIcon(new ImageIcon(GameScreen.class.getResource("/icons/sonraBitirRollover.png")));
@@ -344,7 +365,11 @@ public class GameScreen extends JFrame {
 				txtMatris[satir][sutun].setBounds(163+70*sutun, 10+70*satir, 60, 60);
 				txtMatris[satir][sutun].setHorizontalAlignment(SwingConstants.CENTER);
 				txtMatris[satir][sutun].setFont(new Font("Century Gothic", Font.BOLD, 20));
-				if(satir != 0)
+				if(statistics.isContinue()) {
+					txtMatris[satir][sutun] = statistics.getTxtMatris()[satir][sutun];
+					statistics.getTxtMatris()[statistics.getRow()][0].requestFocusInWindow();
+				}
+				if(satir != statistics.getRow())
 					txtMatris[satir][sutun].setEnabled(false);
 				panel.add(txtMatris[satir][sutun]);
 			}
@@ -359,7 +384,11 @@ public class GameScreen extends JFrame {
 				txtMatris[satir][sutun].setBounds(130+70*sutun, 10+70*satir, 60, 60);
 				txtMatris[satir][sutun].setHorizontalAlignment(SwingConstants.CENTER);
 				txtMatris[satir][sutun].setFont(new Font("Century Gothic", Font.BOLD, 20));
-				if(satir != 0)
+				if(statistics.isContinue()) {
+					txtMatris[satir][sutun] = statistics.getTxtMatris()[satir][sutun];
+					statistics.getTxtMatris()[statistics.getRow()][0].requestFocusInWindow();
+				}
+				if(satir != statistics.getRow())
 					txtMatris[satir][sutun].setEnabled(false);
 				panel.add(txtMatris[satir][sutun]);
 			}
@@ -374,7 +403,11 @@ public class GameScreen extends JFrame {
 				txtMatris[satir][sutun].setBounds(95+70*sutun, 10+70*satir, 60, 60);
 				txtMatris[satir][sutun].setHorizontalAlignment(SwingConstants.CENTER);
 				txtMatris[satir][sutun].setFont(new Font("Century Gothic", Font.BOLD, 20));
-				if(satir != 0)
+				if(statistics.isContinue()) {
+					txtMatris[satir][sutun] = statistics.getTxtMatris()[satir][sutun];
+					statistics.getTxtMatris()[statistics.getRow()][0].requestFocusInWindow();
+				}	
+				if(satir != statistics.getRow())
 					txtMatris[satir][sutun].setEnabled(false);
 				panel.add(txtMatris[satir][sutun]);
 			}

@@ -1,0 +1,4 @@
+¬í sr 
+Statistics        I abandonedCountD 
+avRowCountD avTimeInSecZ 
+isContinueI successfulCountI unsuccessfulCountL equationt Ljava/lang/String;[ 	txtMatrist [[Ljavax/swing/JTextField;xp                             t  p

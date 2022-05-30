@@ -1,6 +1,12 @@
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -12,16 +18,31 @@ public class Gameplay {
 	private String equation;
 	private String guessEquation;
 	private JTextField[][] txtMatris;
-	private int row, column;
+	private int row;
 	private int secs;
 	private boolean isGameOver;
+	private FileOutputStream file;
+	private ObjectOutputStream in;
+	private Statistics statistics;
 	
-	public Gameplay(String equation) {
+	public Gameplay(String equation, Statistics statistics) {
 		checker = new Checker();
 		this.equation = equation;
 		row = 0;
-		column = 0;
+		secs = 0;
 		isGameOver = false;
+		this.statistics = statistics;
+		if(statistics.isContinue() == false)
+			txtMatris = new JTextField[6][equation.length()];
+		else
+			txtMatris = statistics.getTxtMatris();
+		try {
+			file = new FileOutputStream("statistics.txt");
+			in = new ObjectOutputStream(file);
+		} catch (Exception e) {
+			
+		}
+		
 	}
 	
 	public void generateEquation() {
@@ -32,8 +53,32 @@ public class Gameplay {
 		return secs;
 	}
 	
+	public void setRow(int row) {
+		this.row = row;
+	}
+	
+	public void setSecs(int secs) {
+		this.secs = secs;
+	}
+	
 	public void incrementSecs() {
 		secs++;
+	}
+	
+	public void sonraBitirButtonActivate() {
+		statistics.setEquation(equation);
+		statistics.setContinue(true);
+		statistics.setSecs(secs);
+		statistics.setTxtMatris(txtMatris);
+		statistics.setRow(row);
+		try {
+			in.writeObject(statistics);
+			MainScreen frame = new MainScreen();
+			frame.setVisible(true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void inputButtonActivate(String buttonText) {

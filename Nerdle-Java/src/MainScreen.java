@@ -16,26 +16,49 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 
 public class MainScreen extends JFrame {
 	private Gameplay gameplay;
 	private JPanel contentPane;
+	private Statistics statistics;
+	FileInputStream file;
+	ObjectInputStream in;
+	FileOutputStream fileInit;
+	ObjectOutputStream inInit;
+
 	//kaldırılacak
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainScreen frame = new MainScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public MainScreen() {
+		
+		try {
+			file = new FileInputStream("statistics.txt");
+			in = new ObjectInputStream(file);
+			statistics = (Statistics)in.readObject();
+			if(statistics.isContinue() == true) {
+				//System.out.println(statistics.getTxtMatris()[0][0].getText());
+			}
+			else {
+				System.out.println("as");
+			}
+
+			
+		} catch (Exception e) {
+			try {
+				fileInit = new FileOutputStream("statistics.txt");
+				inInit = new ObjectOutputStream(fileInit);
+				statistics = new Statistics();
+				inInit.writeObject(statistics);
+			}
+			catch(Exception ex) {
+				e.printStackTrace();
+			}
+		}
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainScreen.class.getResource("/icons/equals.png")));
 		setTitle("NERDLE");
@@ -94,27 +117,27 @@ public class MainScreen extends JFrame {
 		lblNewLabel_6.setBounds(205, 274, 338, 20);
 		contentPane.add(lblNewLabel_6);
 		
-		JLabel yariOyun = new JLabel("");
+		JLabel yariOyun = new JLabel("" + statistics.getAbandonedCount());
 		yariOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		yariOyun.setBounds(550, 154, 105, 20);
 		contentPane.add(yariOyun);
 		
-		JLabel basarisizOyun = new JLabel("");
+		JLabel basarisizOyun = new JLabel("" + statistics.getUnsuccessfulCount());
 		basarisizOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		basarisizOyun.setBounds(550, 184, 105, 20);
 		contentPane.add(basarisizOyun);
 		
-		JLabel basariliOyun = new JLabel("");
+		JLabel basariliOyun = new JLabel("" + statistics.getSuccessfulCount());
 		basariliOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		basariliOyun.setBounds(550, 214, 105, 20);
 		contentPane.add(basariliOyun);
 		
-		JLabel satirOyun = new JLabel("");
+		JLabel satirOyun = new JLabel("" + statistics.getAvRowCount());
 		satirOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		satirOyun.setBounds(550, 244, 105, 20);
 		contentPane.add(satirOyun);
 		
-		JLabel sureOyun = new JLabel("");
+		JLabel sureOyun = new JLabel("" + statistics.getAvTimeInSec());
 		sureOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		sureOyun.setBounds(550, 274, 105, 20);
 		contentPane.add(sureOyun);
@@ -123,12 +146,14 @@ public class MainScreen extends JFrame {
 		yeniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					GameScreen frame = new GameScreen();
+					GameScreen frame = new GameScreen(statistics);
 					frame.addWindowFocusListener(new WindowAdapter() {
 					    public void windowGainedFocus(WindowEvent e) {
 					        
 					    }
 					});
+					if(statistics.isContinue())
+						statistics.setAbandonedCount(statistics.getAbandonedCount() + 1);
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception ex) {
@@ -142,8 +167,26 @@ public class MainScreen extends JFrame {
 		contentPane.add(yeniButton);
 		
 		JButton devamButton = new JButton("DEVAM ET");
+		devamButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					GameScreen frame = new GameScreen(statistics);
+					frame.addWindowFocusListener(new WindowAdapter() {
+					    public void windowGainedFocus(WindowEvent e) {
+					        
+					    }
+					});
+					frame.setVisible(true);
+					dispose();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		});
 		devamButton.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		devamButton.setBounds(375, 437, 120, 50);
+		if(!statistics.isContinue())
+			devamButton.setEnabled(false);
 		contentPane.add(devamButton);
 		
 		JButton testButton = new JButton("TEST");
