@@ -358,6 +358,10 @@ public class GameScreen extends JFrame {
 		contentPane.add(sonraBitir);
 	}
 	
+	public GameScreen() {
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	}
+
 	public void initialize() {
 		statistics.setRow(0);
 		statistics.setSecs(0);

@@ -160,7 +160,7 @@ public class Gameplay {
 						WinScreen frame = new WinScreen();
 						frame.setVisible(true);
 					} catch (Exception e) {
-						e.printStackTrace();
+						//e.printStackTrace();
 					}
 				}
 				

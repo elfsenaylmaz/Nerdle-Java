@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.Window;
+
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
@@ -19,7 +21,7 @@ public class LoseScreen extends JFrame {
 	public LoseScreen(String equation) {
 		setTitle("NERDLE");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LoseScreen.class.getResource("/icons/equals.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -30,10 +32,14 @@ public class LoseScreen extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					System.gc();
+					for (Window window : Window.getWindows()) {
+					    window.dispose();
+					}
 					MainScreen frame = new MainScreen();
 					frame.setVisible(true);
-					dispose();
-				} catch (Exception ex) {
+				} 
+				catch (Exception ex) {
 				}
 			}
 		});
