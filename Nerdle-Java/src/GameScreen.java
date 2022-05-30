@@ -314,6 +314,8 @@ public class GameScreen extends JFrame {
 				txtMatris[satir][sutun].setBounds(163+70*sutun, 10+70*satir, 60, 60);
 				txtMatris[satir][sutun].setHorizontalAlignment(SwingConstants.CENTER);
 				txtMatris[satir][sutun].setFont(new Font("Century Gothic", Font.BOLD, 20));
+				if(satir != 0)
+					txtMatris[satir][sutun].setEnabled(false);
 				panel.add(txtMatris[satir][sutun]);
 			}
 		}
@@ -327,6 +329,8 @@ public class GameScreen extends JFrame {
 				txtMatris[satir][sutun].setBounds(130+70*sutun, 10+70*satir, 60, 60);
 				txtMatris[satir][sutun].setHorizontalAlignment(SwingConstants.CENTER);
 				txtMatris[satir][sutun].setFont(new Font("Century Gothic", Font.BOLD, 20));
+				if(satir != 0)
+					txtMatris[satir][sutun].setEnabled(false);
 				panel.add(txtMatris[satir][sutun]);
 			}
 		}
@@ -340,6 +344,8 @@ public class GameScreen extends JFrame {
 				txtMatris[satir][sutun].setBounds(95+70*sutun, 10+70*satir, 60, 60);
 				txtMatris[satir][sutun].setHorizontalAlignment(SwingConstants.CENTER);
 				txtMatris[satir][sutun].setFont(new Font("Century Gothic", Font.BOLD, 20));
+				if(satir != 0)
+					txtMatris[satir][sutun].setEnabled(false);
 				panel.add(txtMatris[satir][sutun]);
 			}
 		}				
