@@ -19,7 +19,23 @@ public class WinScreen extends JFrame {
 	private Gameplay gameplay;
 	private JPanel contentPane;
 	
-	public WinScreen() {
+	public WinScreen(int secs) {
+		String time = "";
+		int minute, second;
+		minute = secs / 60;
+		second = secs % 60;
+		if(minute < 10) {
+			if(second < 10)
+				time += "0" + minute + ":0" + second; 
+			else
+				time += "0" + minute + ":" + second; 
+		}
+		else {
+			if(second < 10)
+				time += minute + ":0" + second; 
+			else
+				time += minute + ":" + second;
+		}
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(WinScreen.class.getResource("/icons/equals.png")));
 		setTitle("NERDLE");
@@ -60,7 +76,7 @@ public class WinScreen extends JFrame {
 		lblNewLabel.setBounds(150, 46, 137, 43);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("DENKLEMİ BULMA SÜRENİZ: ");
+		JLabel lblNewLabel_2 = new JLabel("DENKLEMİ BULMA SÜRENİZ: " + time);
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.BOLD, 17));
 		lblNewLabel_2.setBounds(91, 99, 275, 28);
 		contentPane.add(lblNewLabel_2);

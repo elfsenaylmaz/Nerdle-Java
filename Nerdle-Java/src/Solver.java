@@ -25,6 +25,8 @@ public class Solver {
 	
 	public boolean calculate(){
         try{
+        	operandStack.clear();
+        	operatorStack.clear();
             while(operands.size() != 0 || operators.size() != 0){
                 operandStack.push(operands.remove(0));
                 if(operatorStack.isEmpty()){                          //stack boşsa push

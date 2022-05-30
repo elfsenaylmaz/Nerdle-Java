@@ -157,7 +157,7 @@ public class Gameplay {
 					}
 					isGameOver = true;			//ANA SAYFAYA DON
 					try {
-						WinScreen frame = new WinScreen();
+						WinScreen frame = new WinScreen(secs);
 						frame.setVisible(true);
 					} catch (Exception e) {
 						//e.printStackTrace();
