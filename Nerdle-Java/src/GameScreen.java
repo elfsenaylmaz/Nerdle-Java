@@ -53,7 +53,6 @@ public class GameScreen extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		//bundan sonra çağırılıcak kaç digit olmasını istediğim bir ifle çağrılacak
 		if(equation.length() == 7) {
 			create7DigitField();
 		}
@@ -314,6 +313,7 @@ public class GameScreen extends JFrame {
 				txtMatris[satir][sutun] = new JTextField("");
 				txtMatris[satir][sutun].setBounds(163+70*sutun, 10+70*satir, 60, 60);
 				txtMatris[satir][sutun].setHorizontalAlignment(SwingConstants.CENTER);
+				txtMatris[satir][sutun].setFont(new Font("Century Gothic", Font.BOLD, 20));
 				panel.add(txtMatris[satir][sutun]);
 			}
 		}
@@ -326,6 +326,7 @@ public class GameScreen extends JFrame {
 				txtMatris[satir][sutun] = new JTextField("");
 				txtMatris[satir][sutun].setBounds(130+70*sutun, 10+70*satir, 60, 60);
 				txtMatris[satir][sutun].setHorizontalAlignment(SwingConstants.CENTER);
+				txtMatris[satir][sutun].setFont(new Font("Century Gothic", Font.BOLD, 20));
 				panel.add(txtMatris[satir][sutun]);
 			}
 		}
@@ -338,6 +339,7 @@ public class GameScreen extends JFrame {
 				txtMatris[satir][sutun] = new JTextField("");
 				txtMatris[satir][sutun].setBounds(95+70*sutun, 10+70*satir, 60, 60);
 				txtMatris[satir][sutun].setHorizontalAlignment(SwingConstants.CENTER);
+				txtMatris[satir][sutun].setFont(new Font("Century Gothic", Font.BOLD, 20));
 				panel.add(txtMatris[satir][sutun]);
 			}
 		}				
