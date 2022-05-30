@@ -129,9 +129,26 @@ public class Gameplay {
 					else {												//TAHMİN HAKKI BİTTİ
 						isGameOver = true;
 						JOptionPane.showMessageDialog(null, "basaramadin oc!");			//ANA SAYFAYA DON
+						statistics.setUnsuccessfulCount(statistics.getUnsuccessfulCount() + 1);
+						statistics.setContinue(false);
+						try {
+							in.writeObject(statistics);
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
 					}
 				}
 				else {
+					statistics.setAvRowCount(calculateAvRowCount(row));
+					statistics.setAvTimeInSec(calculateAvTimeInSec(secs));
+					//BURDAN DEVAM
+					statistics.setSuccessfulCount(statistics.getSuccessfulCount() + 1);
+					statistics.setContinue(false);
+					try {
+						in.writeObject(statistics);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 					isGameOver = true;			//ANA SAYFAYA DON
 					try {
 						WinScreen frame = new WinScreen();
@@ -150,6 +167,16 @@ public class Gameplay {
 			JOptionPane.showMessageDialog(null, "gecersiz islem oc!");
 		}
 		
+	}
+	
+	public double calculateAvRowCount(int row) {
+		double allRowCount = statistics.getAvRowCount() * statistics.getSuccessfulCount();
+		return (allRowCount + (double)row) / (statistics.getSuccessfulCount() + 1);
+	}
+	
+	public double calculateAvTimeInSec(int secs) {
+		double allTime = statistics.getAvTimeInSec() * statistics.getSuccessfulCount();
+		return (allTime + (double)secs) / (statistics.getSuccessfulCount() + 1);
 	}
 	
 	public boolean isGameOver() {

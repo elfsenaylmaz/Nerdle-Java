@@ -44,6 +44,7 @@ public class GameScreen extends JFrame {
 		
 		if(statistics.isContinue() == false) {
 			equation = generator.generateEquation();
+			initialize();
 		}
 		else {
 			equation = statistics.getEquation();
@@ -355,6 +356,11 @@ public class GameScreen extends JFrame {
 		sonraBitir.setPressedIcon(new ImageIcon(GameScreen.class.getResource("/icons/sonraBitirSelected.png")));
 		sonraBitir.setBounds(630, 569, 75, 50);
 		contentPane.add(sonraBitir);
+	}
+	
+	public void initialize() {
+		statistics.setRow(0);
+		statistics.setSecs(0);
 	}
 	
 	public void create7DigitField() {

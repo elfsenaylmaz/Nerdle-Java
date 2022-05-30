@@ -146,14 +146,15 @@ public class MainScreen extends JFrame {
 		yeniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(statistics.isContinue())
+						statistics.setAbandonedCount(statistics.getAbandonedCount() + 1);
+					statistics.setContinue(false);				
 					GameScreen frame = new GameScreen(statistics);
 					frame.addWindowFocusListener(new WindowAdapter() {
 					    public void windowGainedFocus(WindowEvent e) {
 					        
 					    }
 					});
-					if(statistics.isContinue())
-						statistics.setAbandonedCount(statistics.getAbandonedCount() + 1);
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception ex) {
