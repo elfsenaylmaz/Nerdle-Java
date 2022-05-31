@@ -3,6 +3,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.Window;
@@ -59,6 +61,7 @@ public class LoseScreen extends JFrame {
 					frame.setVisible(true);
 				} 
 				catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "An Exception has ocurred while openning main screen!");
 				}
 			}
 		});

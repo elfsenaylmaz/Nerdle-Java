@@ -3,6 +3,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -57,6 +59,7 @@ public class WinScreen extends JFrame {
 					frame.setVisible(true);
 				} 
 				catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "An IOException has ocurred while openning main screen!");
 				}
 			}
 		});

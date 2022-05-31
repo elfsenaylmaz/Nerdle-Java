@@ -136,7 +136,7 @@ public class Gameplay {
 						file.close();
 						in.close();
 					} catch (IOException e1) {
-						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "An IOException has ocurred while updating your data!");
 					}
 					isGameOver = true;
 					try {
