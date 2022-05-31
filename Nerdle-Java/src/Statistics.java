@@ -2,27 +2,25 @@ import java.io.Serializable;
 
 import javax.swing.JTextField;
 
-public class Statistics implements Serializable{
+public class Statistics implements Serializable{			//dosyada bu class yazdırılıp okunuyor
 	private static final long serialVersionUID = 1L;
 	
-	private int abandonedCount;
-	private int unsuccessfulCount;
-	private int successfulCount;
-	private int gameCount;
-	private double avRowCount;
-	private double avTimeInSec;
-	private int secs;
-	private int row;
-	private boolean isContinue;
-	private JTextField[][] txtMatris;
-	private String equation;
+	private int abandonedCount;					//yarıda bırakılan oyun sayısı
+	private int unsuccessfulCount;				//başarısız oyun sayısı
+	private int successfulCount;				//başarılı oyun sayısı					
+	private double avRowCount;					//oyunu ortalama kaç satırda bitirdiğinin sayısı
+	private double avTimeInSec;					//oyunu ortalama kaç saniyede bitiriyor
+	private int secs;							//yarıda oyun bırakılmışsa kaçıncı saniyede olduğunu tutan değişken
+	private int row;							//yarıda oyun bırakıldıysa kaçıncı satırda olduğunu tutan değişken
+	private boolean isContinue;					//yarıda oyun bırakılıp bırakılmadığını tutan değişken
+	private JTextField[][] txtMatris;			//yarıda oyun bırakıldığında game ekranını tutan matris
+	private String equation;					//yarıda oyun bırakıldığında oluşturulmuş olan denklemi tutan değişken
 	
 	
 	public Statistics() {
 		abandonedCount = 0;
 		unsuccessfulCount = 0;
 		successfulCount = 0;
-		gameCount = 0;
 		secs = 0;
 		row = 0;
 		avRowCount = 0.0;
@@ -31,23 +29,6 @@ public class Statistics implements Serializable{
 		txtMatris = null;
 		equation = "";
 	}
-
-	
-	
-
-	public int getGameCount() {
-		return gameCount;
-	}
-
-
-
-
-	public void setGameCount(int gameCount) {
-		this.gameCount = gameCount;
-	}
-
-
-
 
 	public int getSecs() {
 		return secs;
