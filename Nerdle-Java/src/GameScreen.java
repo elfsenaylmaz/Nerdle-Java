@@ -23,7 +23,7 @@ public class GameScreen extends JFrame {
 	 * Timer objesiyle çalışan timerTask değişkeniyle ekrana timer yazdırılır ve her saniye güncellenmesi sağlanır
 	 * Bu sınıf Gampelay sınıfıyla birlikte çalışır. Her butonun actionPerformed metodları için Gameplay sınıfında o butonla ilişkili
 	 * olan metod çalıştırılır.
-	 * Hangi textFieldın aktif olduğunu bulmak için focuslarına bakılmıştır. Butonların focus olmasını engellenmiştir.
+	 * Hangi textFieldın aktif olduğunu bulmak için focuslarına bakılmıştır. Butonların focus olması engellenmiştir.
 	 * */
 	
 	private Gameplay gameplay;

@@ -25,6 +25,9 @@ import java.util.TimeZone;
 import java.awt.event.ActionEvent;
 
 public class MainScreen extends JFrame {
+	/*	Oyun açıldığında istatistik değerlerini doldurmak için dosya açılır eski oyun bilgilerine göre istatistiğe ait fieldlar doldurulur.
+	 *  Butonlar ilgili JFrameleri çağırır.
+	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Statistics statistics;
@@ -55,7 +58,7 @@ public class MainScreen extends JFrame {
 				fileInit.close();
 			}
 			catch(Exception ex) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "An exception has ocurred while openning statistics file!");
 			}
 		}
 		
@@ -148,7 +151,6 @@ public class MainScreen extends JFrame {
 		df.setTimeZone(tz);
 		String time = df.format(new Date((int)statistics.getAvTimeInSec()*1000L));
 		
-		//JLabel sureOyun = new JLabel("" + statistics.getAvTimeInSec());
 		JLabel sureOyun = new JLabel(time);
 		sureOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		sureOyun.setBounds(526, 274, 105, 20);
@@ -159,21 +161,18 @@ public class MainScreen extends JFrame {
 		yeniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(statistics.isContinue())
-						statistics.setAbandonedCount(statistics.getAbandonedCount() + 1);
+					if(statistics.isContinue())  										  // Daha önceden tamamlanmamış bir oyun varsa
+						statistics.setAbandonedCount(statistics.getAbandonedCount() + 1); // Ve yeni oyun tuşuna basıldıysa eski oyun yarıda bırakılmıştır.
 					statistics.setContinue(false);				
 					GameScreen frame = new GameScreen(statistics);
 					frame.addWindowFocusListener(new WindowAdapter() {
 					    public void windowGainedFocus(WindowEvent e) {
-					        
 					    }
 					});
-					
-				
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception ex) {
-					///////////////////////////////////////////////////////////////////////////////////////
+					JOptionPane.showMessageDialog(null, "An exception has ocurred while opening new game frame!");
 				}
 				
 			}
@@ -190,19 +189,18 @@ public class MainScreen extends JFrame {
 					GameScreen frame = new GameScreen(statistics);
 					frame.addWindowFocusListener(new WindowAdapter() {
 					    public void windowGainedFocus(WindowEvent e) {
-					        
 					    }
 					});
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception ex) {
-					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "An exception has ocurred while opening game frame!");
 				}
 			}
 		});
 		devamButton.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		devamButton.setBounds(375, 437, 120, 50);
-		if(!statistics.isContinue())
+		if(!statistics.isContinue())           // Eski oyuna dair bir bilgi yoksa devam et butonuna basılması engellenir.
 			devamButton.setEnabled(false);
 		contentPane.add(devamButton);
 		
@@ -214,8 +212,7 @@ public class MainScreen extends JFrame {
 					TestScreen frame = new TestScreen();
 					frame.setVisible(true);
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "Error!");
-					//e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "An exception has ocurred while opening test frame!");
 				}
 				dispose();
 			}
