@@ -14,6 +14,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
@@ -40,13 +42,6 @@ public class MainScreen extends JFrame {
 			file = new FileInputStream("statistics.txt");
 			in = new ObjectInputStream(file);
 			statistics = (Statistics)in.readObject();
-			if(statistics.isContinue() == true) {
-				//System.out.println(statistics.getTxtMatris()[0][0].getText());
-			}
-			else {
-				System.out.println("as");
-			}
-
 			
 		} catch (Exception e) {
 			try {
@@ -155,6 +150,8 @@ public class MainScreen extends JFrame {
 					        
 					    }
 					});
+					
+				
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception ex) {

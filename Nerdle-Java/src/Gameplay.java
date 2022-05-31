@@ -202,7 +202,6 @@ public class Gameplay {
 		boolean[] control = new boolean[equation.length()];
 		boolean[] isColored = new boolean[equation.length()];
 		boolean isAllGreen = true;
-		//boolean isColored;
 		for(int i = 0; i<equation.length(); ++i) {
 			control[i] = false;
 			isColored[i] = false;
