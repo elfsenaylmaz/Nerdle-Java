@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-class SolverTest {
+public class SolverTest {
 	ArrayList<Integer> operands = new ArrayList<Integer>();
 	ArrayList<Character> operators = new ArrayList<Character>();
 	Solver solver = new Solver();
 	@Test
-	void islemOnceligi() {						//Islem onceligi test ediliyor
+	public void islemOnceligiTest() {						//Islem onceligi test ediliyor
 		operands.clear();
 		operators.clear();
 		
@@ -23,5 +23,9 @@ class SolverTest {
 		solver.calculate();
 		assertEquals(20, solver.getResult());
 	}
+	
+	
+	
+	
 
 }

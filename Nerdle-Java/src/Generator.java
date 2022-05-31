@@ -5,8 +5,8 @@ public class Generator {
 	private char[] operators = {'+', '-', '*', '/'};
 	private Random random;
 	private String equation;
-	ArrayList<Integer> operandsList;
-	ArrayList<Character> operatorsList;
+	ArrayList<Integer> operandsList;								//Solver classinda cozmek icin sayilarin listede tutulmasi
+	ArrayList<Character> operatorsList;								//Solver classinda cozmek icin operatorlerin listede tutulmasi
 	private Solver solver;
 	private int digitCount;
 	
@@ -21,8 +21,8 @@ public class Generator {
 		return digitCount;
 	}
 
-	public String generateEquation() {
-		digitCount = random.nextInt(3);
+	public String generateEquation() {								//7, 8 veya 9 uzunlugunda random denklem uretecek fonksiyon
+		digitCount = random.nextInt(3);								//Denklem uzunlugunun random secilmesi
 		if(digitCount == 0) {
 			return create7DigitEquation();
 		}
@@ -34,26 +34,27 @@ public class Generator {
 		}
 	}
 	
-	public String create7DigitEquation() {
+	public String create7DigitEquation() {							//7 uzunlugunda denklemi olusturan fonksiyon
 		int operand1, operand2, operand3;
 		char operator1, operator2;
 		int type;
 		int numberOfOperator;
 		int placement;
+		boolean control;
+		int result;
+		String newEquation;
 		
 		operandsList.clear();
         operatorsList.clear();
         equation = "";
         
         type = random.nextInt(2);
-        if(type == 0) {													//... = 1 digit
-        	numberOfOperator = random.nextInt(2);
+        if(type == 0) {													//Esittirden sonra 1 basamak bulunmasi (... = 1 digit)
+        	numberOfOperator = random.nextInt(2);						//Denklemde bulunacak operator sayisinin random secilmesi
         	if(numberOfOperator == 1) {									//2 operand bulunmasi
-        		boolean control = false;
-    			int result;
-    			String newEquation;
     			
-    			while(!control) {
+        		control = false;
+    			while(!control) {	
     				operand1 = random.nextInt(1, 10);
 				    operand2 = random.nextInt(1, 10);
 				    operand3 = random.nextInt(1, 10);	
@@ -95,9 +96,7 @@ public class Generator {
     			}
         	}
         	else {														//1 operand bulunmasi
-        		boolean control = false;
-    			int result;
-    			String newEquation;
+        		control = false;
     			
     			while(!control) {
     				operand1 = random.nextInt(10, 100);
@@ -134,11 +133,9 @@ public class Generator {
         	}
         }
         else {															// ... = 2 digit
-        	placement = random.nextInt(2);
+        	placement = random.nextInt(2);								//Sayilarin yerlesecegi yerlerin random secilmesi
         	if(placement == 0) {
-        		boolean control = false;
-    			int result;
-    			String newEquation;
+        		control = false;
     			
     			while(!control) {
     				operand1 = random.nextInt(1, 10);
@@ -174,9 +171,7 @@ public class Generator {
     			}
         	}
         	else {
-        		boolean control = false;
-    			int result;
-    			String newEquation;
+        		control = false;
     			
     			while(!control) {
     				operand1 = random.nextInt(10, 100);
@@ -220,6 +215,10 @@ public class Generator {
 		char operator1, operator2;
         int type;
         int numberOfOperator;
+        boolean control;
+		int placement;
+		int result;
+		String newEquation;
         
         operandsList.clear();
         operatorsList.clear();
@@ -230,16 +229,14 @@ public class Generator {
        	
         	numberOfOperator = random.nextInt(2);
         	if(numberOfOperator == 1) {															//2 operand bulunmasi											      		
-        			boolean control = false;
-        			int count = 0;
-        			int result;
-        			String newEquation;
         			
+        			control = false;
         			while(!control) {
         				operand1 = random.nextInt(10, 100);
 					    operand2 = random.nextInt(1, 10);
 					    operand3 = random.nextInt(1, 10);
-        				if(count % 3 == 0) {													//2 digit + operand + 1 digit + operand + 1 digit
+					    placement = random.nextInt(3);
+        				if(placement == 0) {													//2 digit + operand + 1 digit + operand + 1 digit
 
 							operandsList.clear();
 					        operatorsList.clear();
@@ -276,7 +273,7 @@ public class Generator {
 					        }
 
         				}
-        				else if(count % 3 == 1) {												//1 digit + operand + 2 digit + operand + 1 digit
+        				else if(placement == 1) {												//1 digit + operand + 2 digit + operand + 1 digit
 
 							operandsList.clear();
 					        operatorsList.clear();
@@ -348,15 +345,12 @@ public class Generator {
 								}
 					        }
         				}
-        				count++;
         		}
         		  		
         	}
         	else {																	//1 operand bulunmasi
         		
-        		boolean control = false;
-    			int result;
-    			String newEquation;
+        		control = false;
     			
     			while(!control) {
     				operand1 = random.nextInt(100, 1000);
@@ -397,9 +391,7 @@ public class Generator {
         else if(type == 1){															// ... = 2 digit
         	numberOfOperator = random.nextInt(2);
         	if(numberOfOperator == 1) {									//2 operand bulunmasi
-        		boolean control = false;
-    			int result;
-    			String newEquation;
+        		control = false;
     			
     			while(!control) {
     				operand1 = random.nextInt(10);
@@ -444,9 +436,7 @@ public class Generator {
         	}
         	else {														//1 operand bulunmasi
         		if(random.nextInt(2) == 0) {
-        			boolean control = false;
-        			int result;
-        			String newEquation;
+        			control = false;
         			
         			while(!control) {
         				operand1 = random.nextInt(10, 100);
@@ -482,9 +472,7 @@ public class Generator {
         			}
         		}
         		else {
-        			boolean control = false;
-        			int result;
-        			String newEquation;
+        			control = false;
         			
         			while(!control) {
         				operand1 = random.nextInt(100, 1000);
@@ -523,9 +511,7 @@ public class Generator {
         }
         else {															// ... = 3 digit
         	if(random.nextInt(2) == 0) {
-        		boolean control = false;
-    			int result;
-    			String newEquation;
+        		control = false;
     			
     			while(!control) {
     				operand1 = random.nextInt(10);
@@ -561,9 +547,7 @@ public class Generator {
     			}
         	}
         	else {
-        		boolean control = false;
-    			int result;
-    			String newEquation;
+        		control = false;
     			
     			while(!control) {
     				operand1 = random.nextInt(10, 100);
@@ -609,6 +593,9 @@ public class Generator {
         int type;
         int numberOfOperator;
         int placement;
+		boolean control;
+		int result;
+		String newEquation;
         
         operandsList.clear();
         operatorsList.clear();
@@ -618,10 +605,7 @@ public class Generator {
         if(type == 0) {													// ... = 1 digit
         	numberOfOperator = random.nextInt(3);
         	if(numberOfOperator == 2) {									// 3 operand bulunmasi
-        		boolean control = false;
-    			int result;
-    			String newEquation;
-    			
+    			control = false;
     			while(!control) {
     				operand1 = random.nextInt(1, 10);
 				    operand2 = random.nextInt(1, 10);
@@ -674,9 +658,7 @@ public class Generator {
         	else if(numberOfOperator == 1) {							// 2 operand bulunmasi
         		placement = random.nextInt(3);
         		if(placement == 0) {
-        			boolean control = false;
-        			int result;
-        			String newEquation;
+        			control = false;
         			
         			while(!control) {
         				operand1 = random.nextInt(10, 100);
@@ -720,9 +702,7 @@ public class Generator {
         			}
         		}
         		else if(placement == 1) {
-        			boolean control = false;
-        			int result;
-        			String newEquation;
+        			control = false;
         			
         			while(!control) {
         				operand1 = random.nextInt(1, 10);
@@ -766,9 +746,7 @@ public class Generator {
         			}
         		}
         		else{
-        			boolean control = false;
-        			int result;
-        			String newEquation;
+        			control = false;
         			
         			while(!control) {
         				operand1 = random.nextInt(10, 100);
@@ -814,9 +792,7 @@ public class Generator {
 
         	}
         	else {														//1 operand bulunmasi
-        		boolean control = false;
-    			int result;
-    			String newEquation;
+        		control = false;
     			
     			while(!control) {
     				operand1 = random.nextInt(100, 1000);
@@ -857,9 +833,7 @@ public class Generator {
         	if(numberOfOperator == 1) {									//2 operand bulunmasi
         		placement = random.nextInt(3);
         		if(placement == 0) {
-        			boolean control = false;
-        			int result;
-        			String newEquation;
+        			control = false;
         			
         			while(!control) {
         				operand1 = random.nextInt(10, 100);
@@ -902,9 +876,7 @@ public class Generator {
         			}
         		}
         		else if(placement == 1) {
-        			boolean control = false;
-        			int result;
-        			String newEquation;
+        			control = false;
         			
         			while(!control) {
         				operand1 = random.nextInt(1, 10);
@@ -948,9 +920,7 @@ public class Generator {
         			}
         		}
         		else {
-        			boolean control = false;
-        			int result;
-        			String newEquation;
+        			control = false;
         			
         			while(!control) {
         				operand1 = random.nextInt(1, 10);
@@ -995,9 +965,7 @@ public class Generator {
         		}
         	}
         	else {														//1 operand bulunmasi
-        		boolean control = false;
-    			int result;
-    			String newEquation;
+        		control = false;
     			
     			while(!control) {
     				operand1 = random.nextInt(100, 1000);
@@ -1036,9 +1004,7 @@ public class Generator {
         else {															// ... = 3 digit
         	numberOfOperator = random.nextInt(2);
         	if(numberOfOperator == 1) {									//2 operand bulunmasi
-        		boolean control = false;
-    			int result;
-    			String newEquation;
+        		control = false;
     			
     			while(!control) {
     				operand1 = random.nextInt(1, 10);
@@ -1083,9 +1049,7 @@ public class Generator {
         	else {														//1 operand bulunmasi
         		placement = random.nextInt(3);
         		if(placement == 0) {
-        			boolean control = false;
-        			int result;
-        			String newEquation;
+        			control = false;
         			
         			while(!control) {
         				operand1 = random.nextInt(100, 1000);
@@ -1122,9 +1086,7 @@ public class Generator {
         			}
         		}
         		else if(placement == 1) {
-        			boolean control = false;
-        			int result;
-        			String newEquation;
+        			control = false;
         			
         			while(!control) {
         				operand1 = random.nextInt(10, 100);
@@ -1161,9 +1123,7 @@ public class Generator {
         			}
         		}
         		else {
-        			boolean control = false;
-        			int result;
-        			String newEquation;
+        			control = false;
         			
         			while(!control) {
         				operand1 = random.nextInt(1, 10);
