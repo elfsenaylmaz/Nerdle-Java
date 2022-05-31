@@ -74,14 +74,14 @@ public class MainScreen extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setIcon(new ImageIcon(MainScreen.class.getResource("/icons/calculator (1).png")));
-		lblNewLabel_1.setBounds(334, 20, 45, 39);
+		lblNewLabel_1.setBounds(334, 33, 45, 39);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("nerdle");
 		lblNewLabel.setForeground(new Color(153, 102, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 45));
-		lblNewLabel.setBounds(360, 10, 179, 50);
+		lblNewLabel.setBounds(360, 23, 179, 50);
 		contentPane.add(lblNewLabel);
 		
 		JButton closeButton = new JButton("");
@@ -98,42 +98,42 @@ public class MainScreen extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("NUMBER OF ABANDONED GAMES:");
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(288, 154, 254, 20);
+		lblNewLabel_2.setBounds(264, 154, 254, 20);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("NUMBER OF UNSUCCESSFUL GAMES:");
 		lblNewLabel_3.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		lblNewLabel_3.setBounds(275, 184, 272, 20);
+		lblNewLabel_3.setBounds(251, 184, 272, 20);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("NUMBER OF SUCCESSFUL GAMES:");
 		lblNewLabel_4.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		lblNewLabel_4.setBounds(297, 214, 247, 20);
+		lblNewLabel_4.setBounds(273, 214, 247, 20);
 		contentPane.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("TAMAMLANAN OYUNLARIN ORTALAMA SATIR SAYISI:");
+		JLabel lblNewLabel_5 = new JLabel("AVERAGE NUMBER OF LINES OF SUCCESSFUL GAMES:");
 		lblNewLabel_5.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		lblNewLabel_5.setBounds(165, 244, 378, 20);
+		lblNewLabel_5.setBounds(132, 244, 387, 20);
 		contentPane.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("TAMAMLANAN OYUNLARIN ORTALAMA SÜRESİ:");
+		JLabel lblNewLabel_6 = new JLabel(" AVERAGE TIME OF SUCCESSFUL GAMES:");
 		lblNewLabel_6.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		lblNewLabel_6.setBounds(205, 274, 338, 20);
+		lblNewLabel_6.setBounds(224, 274, 294, 20);
 		contentPane.add(lblNewLabel_6);
 		
 		JLabel yariOyun = new JLabel("" + statistics.getAbandonedCount());
 		yariOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		yariOyun.setBounds(550, 154, 105, 20);
+		yariOyun.setBounds(526, 154, 105, 20);
 		contentPane.add(yariOyun);
 		
 		JLabel basarisizOyun = new JLabel("" + statistics.getUnsuccessfulCount());
 		basarisizOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		basarisizOyun.setBounds(550, 184, 105, 20);
+		basarisizOyun.setBounds(526, 184, 105, 20);
 		contentPane.add(basarisizOyun);
 		
 		JLabel basariliOyun = new JLabel("" + statistics.getSuccessfulCount());
 		basariliOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		basariliOyun.setBounds(550, 214, 105, 20);
+		basariliOyun.setBounds(526, 214, 105, 20);
 		contentPane.add(basariliOyun);
 		
 		String pattern = "#.###";
@@ -143,7 +143,7 @@ public class MainScreen extends JFrame {
 		
 		JLabel satirOyun = new JLabel(format);
 		satirOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		satirOyun.setBounds(550, 244, 105, 20);
+		satirOyun.setBounds(526, 244, 105, 20);
 		contentPane.add(satirOyun);
 		
 		TimeZone tz = TimeZone.getTimeZone("UTC");
@@ -154,10 +154,10 @@ public class MainScreen extends JFrame {
 		//JLabel sureOyun = new JLabel("" + statistics.getAvTimeInSec());
 		JLabel sureOyun = new JLabel(time);
 		sureOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		sureOyun.setBounds(550, 274, 105, 20);
+		sureOyun.setBounds(526, 274, 105, 20);
 		contentPane.add(sureOyun);
 		
-		JButton yeniButton = new JButton("YENİ OYUN");
+		JButton yeniButton = new JButton("NEW GAME");
 		yeniButton.setBackground(new Color(153, 204, 255));
 		yeniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -185,7 +185,7 @@ public class MainScreen extends JFrame {
 		yeniButton.setBounds(375, 377, 120, 50);
 		contentPane.add(yeniButton);
 		
-		JButton devamButton = new JButton("DEVAM ET");
+		JButton devamButton = new JButton("CONTINUE");
 		devamButton.setBackground(new Color(153, 204, 204));
 		devamButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
