@@ -37,10 +37,13 @@ public class MainScreen extends JFrame {
 	ObjectInputStream in;
 	FileOutputStream fileInit;
 	ObjectOutputStream inInit;
+	private JTextField textField;
 
 	//kaldırılacak
 
 	public MainScreen() {
+		setResizable(false);
+		setFont(new Font("Century Gothic", Font.BOLD, 15));
 		
 		try {
 			file = new FileInputStream("statistics.txt");
@@ -59,8 +62,8 @@ public class MainScreen extends JFrame {
 			}
 		}
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MainScreen.class.getResource("/icons/equals.png")));
-		setTitle("NERDLE");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainScreen.class.getResource("/icons/calculator (1).png")));
+		setTitle("nerdle");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 900, 700);
 		contentPane = new JPanel();
@@ -68,15 +71,17 @@ public class MainScreen extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("6 – 19011040 Engin Memiş – 20011040 Elif Sena Yılmaz");
-		lblNewLabel_1.setFont(new Font("Tw Cen MT", Font.ITALIC, 12));
-		lblNewLabel_1.setBounds(10, 640, 294, 13);
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setIcon(new ImageIcon(MainScreen.class.getResource("/icons/calculator (1).png")));
+		lblNewLabel_1.setBounds(334, 20, 45, 39);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("nerdle");
+		lblNewLabel.setForeground(new Color(153, 102, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 35));
-		lblNewLabel.setBounds(375, 10, 128, 50);
+		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 45));
+		lblNewLabel.setBounds(360, 10, 179, 50);
 		contentPane.add(lblNewLabel);
 		
 		JButton closeButton = new JButton("");
@@ -153,6 +158,7 @@ public class MainScreen extends JFrame {
 		contentPane.add(sureOyun);
 		
 		JButton yeniButton = new JButton("YENİ OYUN");
+		yeniButton.setBackground(new Color(153, 204, 255));
 		yeniButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -180,6 +186,7 @@ public class MainScreen extends JFrame {
 		contentPane.add(yeniButton);
 		
 		JButton devamButton = new JButton("DEVAM ET");
+		devamButton.setBackground(new Color(153, 204, 204));
 		devamButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -203,6 +210,7 @@ public class MainScreen extends JFrame {
 		contentPane.add(devamButton);
 		
 		JButton testButton = new JButton("TEST");
+		testButton.setBackground(new Color(153, 204, 153));
 		testButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -220,9 +228,25 @@ public class MainScreen extends JFrame {
 		contentPane.add(testButton);
 		
 		JLabel lblNewLabel_7 = new JLabel("İSTATİSTİKLER");
+		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7.setIcon(new ImageIcon(MainScreen.class.getResource("/icons/stats.png")));
+		lblNewLabel_7.setForeground(new Color(153, 153, 255));
 		lblNewLabel_7.setFont(new Font("Century Gothic", Font.BOLD, 20));
-		lblNewLabel_7.setBounds(375, 114, 128, 30);
+		lblNewLabel_7.setBounds(347, 114, 179, 30);
 		contentPane.add(lblNewLabel_7);
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setFont(new Font("Tw Cen MT", Font.ITALIC, 12));
+		textField.setText("6 – 19011040 Engin Memiş – 20011040 Elif Sena Yılmaz");
+		textField.setBounds(10, 634, 294, 19);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel background = new JLabel("");
+		background.setIcon(new ImageIcon(MainScreen.class.getResource("/icons/background.jpg")));
+		background.setBounds(0, 0, 900, 700);
+		contentPane.add(background);
 	}
-
 }

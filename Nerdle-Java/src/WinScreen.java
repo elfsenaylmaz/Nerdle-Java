@@ -78,7 +78,7 @@ public class WinScreen extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("DENKLEMİ BULMA SÜRENİZ: " + time);
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.BOLD, 17));
-		lblNewLabel_2.setBounds(72, 99, 286, 28);
+		lblNewLabel_2.setBounds(73, 99, 286, 28);
 		contentPane.add(lblNewLabel_2);
 	}
 }
