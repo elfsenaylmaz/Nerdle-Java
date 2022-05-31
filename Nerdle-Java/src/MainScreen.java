@@ -1,5 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JFrame;
@@ -14,12 +12,9 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -30,7 +25,7 @@ import java.util.TimeZone;
 import java.awt.event.ActionEvent;
 
 public class MainScreen extends JFrame {
-	private Gameplay gameplay;
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Statistics statistics;
 	FileInputStream file;
@@ -39,7 +34,6 @@ public class MainScreen extends JFrame {
 	ObjectOutputStream inInit;
 	private JTextField textField;
 
-	//kaldırılacak
 
 	public MainScreen() {
 		setResizable(false);

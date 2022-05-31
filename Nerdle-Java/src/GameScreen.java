@@ -1,33 +1,22 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.HeadlessException;
 
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
 public class GameScreen extends JFrame {
-
+	private static final long serialVersionUID = 1L;
+	
 	private Gameplay gameplay;
 	private Generator generator;
 	private String equation;

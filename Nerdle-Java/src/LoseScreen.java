@@ -1,5 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,7 +15,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 
 public class LoseScreen extends JFrame {
-
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	public LoseScreen(String equation) {
