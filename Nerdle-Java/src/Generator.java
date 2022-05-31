@@ -5,9 +5,9 @@ public class Generator {
 	private char[] operators = {'+', '-', '*', '/'};
 	private Random random;
 	private String equation;
-	ArrayList<Integer> operandsList;								//Solver classinda cozmek icin sayilarin listede tutulmasi
-	ArrayList<Character> operatorsList;								//Solver classinda cozmek icin operatorlerin listede tutulmasi
-	private Solver solver;
+	ArrayList<Integer> operandsList;								//Solver classinda cozmek icin sayilari listede tutan arrayList
+	ArrayList<Character> operatorsList;								//Solver classinda cozmek icin operatorleri listede tutan arrayList
+	private Solver solver;											//Eşittirin sol tarafında olan stringi alıp doğru sonucunu hesaplar
 	private int digitCount;
 	
 	public Generator() {
@@ -16,21 +16,17 @@ public class Generator {
 		operatorsList = new ArrayList<Character>();
 		solver = new Solver();
 	}
-	
-	public int getDigitCount() {
-		return digitCount;
-	}
 
 	public String generateEquation() {								//7, 8 veya 9 uzunlugunda random denklem uretecek fonksiyon
 		digitCount = random.nextInt(3);								//Denklem uzunlugunun random secilmesi
 		if(digitCount == 0) {
-			return create7DigitEquation();
+			return create7DigitEquation();							//33. satırdaki fonksiyonu çağırır
 		}
-		else if(digitCount == 1) {
-			return create8DigitEquation();
+		else if(digitCount == 1) {									
+			return create8DigitEquation();							//209. satırdaki fonksiyonu çağırır
 		}
 		else {
-			return create9DigitEquation();
+			return create9DigitEquation();							//586. satırdaki fonksiyonu çağırır
 		}
 	}
 	
@@ -44,20 +40,20 @@ public class Generator {
 		int result;
 		String newEquation;
 		
-		operandsList.clear();
+		operandsList.clear();										
         operatorsList.clear();
         equation = "";
         
         type = random.nextInt(2);
         if(type == 0) {													//Esittirden sonra 1 basamak bulunmasi (... = 1 digit)
         	numberOfOperator = random.nextInt(2);						//Denklemde bulunacak operator sayisinin random secilmesi
-        	if(numberOfOperator == 1) {									//2 operand bulunmasi
+        	if(numberOfOperator == 1) {									//2 operator bulunmasi durumu
     			
-        		control = false;
-    			while(!control) {	
-    				operand1 = random.nextInt(1, 10);
-				    operand2 = random.nextInt(1, 10);
-				    operand3 = random.nextInt(1, 10);	
+        		control = false;										//(BU WHİLE DÖNGÜSÜ KODUN AŞAĞI KISIMLARINDA DA AYNI ŞEKİLDE İŞLİYOR)
+    			while(!control) {										//Doğru denklem üretilene kadar dönen döngü
+    				operand1 = random.nextInt(1, 10);					//Sıfır toplama-çıkarmada etkisiz çarpma-bölmede yutan eleman oldugundan
+				    operand2 = random.nextInt(1, 10);					//dolayı içinde fazla sıfır olan denklemler üretildiği için
+				    operand3 = random.nextInt(1, 10);					//düzgün olsun diye sayıları 1den başlayarak üretiyorum.
 				    operator1 = operators[random.nextInt(4)];
 				    operator2 = operators[random.nextInt(4)];
 			        
@@ -65,7 +61,7 @@ public class Generator {
 			        operatorsList.clear();
 			        equation = "";   			      
 			        
-			        equation += operand1;
+			        equation += operand1;								//Üretilen operand ve operatorler listelere ve equation stringine atılıyor
 			        operandsList.add(operand1);      			        
 			     
 			        equation += operator1;
@@ -81,29 +77,29 @@ public class Generator {
 			        operandsList.add(operand3);      			             			        
 
 			        
-			        solver.setList(operandsList, operatorsList);
-			        if(solver.calculate()) {
-			        	result = solver.getResult();
+			        solver.setList(operandsList, operatorsList);		//Denklemin sonucunu bulabilmek için solver objesinin listeleri set ediliyor
+			        if(solver.calculate()) {							//Denklemde herhangi bir sıkıntı yoksa denklemi çözüp true döndürür
+			        	result = solver.getResult();					//Çözülen denklemin sonucunu alır
 						newEquation = equation;
-						newEquation += '=';
+						newEquation += '=';								//Equation stringinin içine = ve denklemin sonucu eklenir.
 						newEquation += result;
-						if(newEquation.length() == 7) {
-							control = true;
+						if(newEquation.length() == 7) {					//Eğer son olarak denklemin uzunluğu 7ye ulaştıysa denklem doğrudur
+							control = true;								//Doğru denklem oldugu için döngüden çıkmak için control true yapılır
 							equation = newEquation;
 						}
 			        }
 
     			}
         	}
-        	else {														//1 operand bulunmasi
+        	else {														//1 operator bulunmasi
         		control = false;
     			
     			while(!control) {
-    				operand1 = random.nextInt(10, 100);
-				    operand2 = random.nextInt(10, 100);
+    				operand1 = random.nextInt(10, 100);						//Yukarda açıklandığı gibi operator sayısına göre
+				    operand2 = random.nextInt(10, 100);						//Operand ve operatör sayılarınca random sayı ve operator üretilir
 				    operator1 = operators[random.nextInt(4)];
 			        
-					operandsList.clear();
+					operandsList.clear();									//Kodun devamı yukarıda açıklandığı şekilde işler
 			        operatorsList.clear();
 			        equation = "";   			      
 			        
@@ -132,12 +128,12 @@ public class Generator {
     			}
         	}
         }
-        else {															// ... = 2 digit
+        else {															// Eşittirden sonra 2 Basamaklı sayı olması (... = 2 digit)
         	placement = random.nextInt(2);								//Sayilarin yerlesecegi yerlerin random secilmesi
-        	if(placement == 0) {
+        	if(placement == 0) {										//1 basamak + operator + 2 basamak
         		control = false;
     			
-    			while(!control) {
+    			while(!control) {										//Bu kod bloğu yukarda açıklandığı şekilde işliyor
     				operand1 = random.nextInt(1, 10);
 				    operand2 = random.nextInt(10, 100);
 				    operator1 = operators[random.nextInt(4)];
@@ -173,8 +169,8 @@ public class Generator {
         	else {
         		control = false;
     			
-    			while(!control) {
-    				operand1 = random.nextInt(10, 100);
+    			while(!control) {														//Bu kod bloğu yukarda açıklandığı gibi işliyor
+    				operand1 = random.nextInt(10, 100);									//2 basamak + operator + 1 basamak
 				    operand2 = random.nextInt(1, 10);	
 				    operator1 = operators[random.nextInt(4)];
 			        
@@ -210,7 +206,7 @@ public class Generator {
         return equation;
 	}
 	
-	public String create8DigitEquation() {
+	public String create8DigitEquation() {						//create7DigitEquation fonksiyonunun işlediği gibi çalışıyor sadece 8 basamaklı
 		int operand1, operand2, operand3;
 		char operator1, operator2;
         int type;
@@ -228,7 +224,7 @@ public class Generator {
         if(type == 0) {																		// ... = 1 digit
        	
         	numberOfOperator = random.nextInt(2);
-        	if(numberOfOperator == 1) {															//2 operand bulunmasi											      		
+        	if(numberOfOperator == 1) {															//Denklemde 2 operand bulunmasi											      		
         			
         			control = false;
         			while(!control) {
@@ -348,7 +344,7 @@ public class Generator {
         		}
         		  		
         	}
-        	else {																	//1 operand bulunmasi
+        	else {																	//Denklemde 1 operand bulunmasi
         		
         		control = false;
     			
@@ -390,7 +386,7 @@ public class Generator {
         }
         else if(type == 1){															// ... = 2 digit
         	numberOfOperator = random.nextInt(2);
-        	if(numberOfOperator == 1) {									//2 operand bulunmasi
+        	if(numberOfOperator == 1) {									//Denklemde 2 operand bulunmasi
         		control = false;
     			
     			while(!control) {
@@ -434,7 +430,7 @@ public class Generator {
 
     			}
         	}
-        	else {														//1 operand bulunmasi
+        	else {														//Denklemde 1 operand bulunmasi
         		if(random.nextInt(2) == 0) {
         			control = false;
         			
@@ -510,7 +506,7 @@ public class Generator {
         	}
         }
         else {															// ... = 3 digit
-        	if(random.nextInt(2) == 0) {
+        	if(random.nextInt(2) == 0) {								//1 basamak + operator + 2 basamak
         		control = false;
     			
     			while(!control) {
@@ -546,7 +542,7 @@ public class Generator {
 
     			}
         	}
-        	else {
+        	else {															//2 basamak + operator + 1 basamak
         		control = false;
     			
     			while(!control) {
@@ -587,7 +583,7 @@ public class Generator {
 	}
 	
 	
-	public String create9DigitEquation() {
+	public String create9DigitEquation() {								//create7DigitEquation fonksiyonun işlediği gibi çalışıyor
 		int operand1, operand2, operand3, operand4;
 		char operator1, operator2, operator3;
         int type;
@@ -604,7 +600,7 @@ public class Generator {
         type = random.nextInt(3);
         if(type == 0) {													// ... = 1 digit
         	numberOfOperator = random.nextInt(3);
-        	if(numberOfOperator == 2) {									// 3 operand bulunmasi
+        	if(numberOfOperator == 2) {									//Denklemde 3 operand bulunmasi
     			control = false;
     			while(!control) {
     				operand1 = random.nextInt(1, 10);
@@ -655,9 +651,9 @@ public class Generator {
 
     			}
         	}
-        	else if(numberOfOperator == 1) {							// 2 operand bulunmasi
+        	else if(numberOfOperator == 1) {							//Denklemde 2 operand bulunmasi
         		placement = random.nextInt(3);
-        		if(placement == 0) {
+        		if(placement == 0) {									//2 basamak + operator + 1 basamak + operator + 2 basamak
         			control = false;
         			
         			while(!control) {
@@ -701,7 +697,7 @@ public class Generator {
 
         			}
         		}
-        		else if(placement == 1) {
+        		else if(placement == 1) {								//1 basamak + operator + 2 basamak + operator + 2 basamak
         			control = false;
         			
         			while(!control) {
@@ -745,7 +741,7 @@ public class Generator {
 
         			}
         		}
-        		else{
+        		else{														//2 basamak + operator + 2 basamak + operator + 1 basamak
         			control = false;
         			
         			while(!control) {
@@ -832,7 +828,7 @@ public class Generator {
         	numberOfOperator = random.nextInt(2);
         	if(numberOfOperator == 1) {									//2 operand bulunmasi
         		placement = random.nextInt(3);
-        		if(placement == 0) {
+        		if(placement == 0) {									//2 basamak + operator + 1 basamak + operator + 1 basamak
         			control = false;
         			
         			while(!control) {
@@ -875,7 +871,7 @@ public class Generator {
 
         			}
         		}
-        		else if(placement == 1) {
+        		else if(placement == 1) {									//1 basamak + operator + 2 basamak + operator + 1 basamak
         			control = false;
         			
         			while(!control) {
@@ -919,7 +915,7 @@ public class Generator {
 
         			}
         		}
-        		else {
+        		else {													//1 basamak + operator + 1 basamak + operator + 2 basamak
         			control = false;
         			
         			while(!control) {
@@ -1048,7 +1044,7 @@ public class Generator {
         	}
         	else {														//1 operand bulunmasi
         		placement = random.nextInt(3);
-        		if(placement == 0) {
+        		if(placement == 0) {										//3 basamak + operator + 1 basamak
         			control = false;
         			
         			while(!control) {
@@ -1085,7 +1081,7 @@ public class Generator {
 
         			}
         		}
-        		else if(placement == 1) {
+        		else if(placement == 1) {											//2 basamak + operator + 2 basamak
         			control = false;
         			
         			while(!control) {
@@ -1122,7 +1118,7 @@ public class Generator {
 
         			}
         		}
-        		else {
+        		else {															//1 basamak + operator + 3 basamak
         			control = false;
         			
         			while(!control) {
@@ -1160,6 +1156,6 @@ public class Generator {
         		}
         	}
         }
-        return equation;
+        return equation;											//oluşturulan denklemin return edilmesi
 	}
 }
