@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class LoseScreen extends JFrame {
 
@@ -29,6 +30,7 @@ public class LoseScreen extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("ANA SAYFA");
+		btnNewButton.setIcon(new ImageIcon(LoseScreen.class.getResource("/icons/home (1).png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -44,7 +46,7 @@ public class LoseScreen extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		btnNewButton.setBounds(150, 159, 137, 43);
+		btnNewButton.setBounds(139, 158, 154, 43);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("6 – 19011040 Engin Memiş – 20011040 Elif Sena Yılmaz");
@@ -55,7 +57,7 @@ public class LoseScreen extends JFrame {
 		JLabel lblNewLabel = new JLabel("KAYBETTİNİZ!");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
-		lblNewLabel.setBounds(150, 55, 137, 43);
+		lblNewLabel.setBounds(139, 50, 154, 43);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("DOĞRU DENKLEM: " + equation);

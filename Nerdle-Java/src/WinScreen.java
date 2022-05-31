@@ -62,7 +62,7 @@ public class WinScreen extends JFrame {
 		});
 		btnNewButton.setIcon(new ImageIcon(WinScreen.class.getResource("/icons/home (1).png")));
 		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		btnNewButton.setBounds(150, 159, 137, 43);
+		btnNewButton.setBounds(130, 159, 155, 43);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("6 – 19011040 Engin Memiş – 20011040 Elif Sena Yılmaz");
@@ -73,12 +73,12 @@ public class WinScreen extends JFrame {
 		JLabel lblNewLabel = new JLabel("TEBRİKLER!");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
-		lblNewLabel.setBounds(150, 46, 137, 43);
+		lblNewLabel.setBounds(130, 46, 155, 43);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("DENKLEMİ BULMA SÜRENİZ: " + time);
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.BOLD, 17));
-		lblNewLabel_2.setBounds(91, 99, 275, 28);
+		lblNewLabel_2.setBounds(72, 99, 286, 28);
 		contentPane.add(lblNewLabel_2);
 	}
 }
