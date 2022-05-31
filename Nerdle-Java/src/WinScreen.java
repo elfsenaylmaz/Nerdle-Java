@@ -14,12 +14,14 @@ import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class WinScreen extends JFrame {
 	private Gameplay gameplay;
 	private JPanel contentPane;
 	
 	public WinScreen(int secs) {
+		setResizable(false);
 		String time = "";
 		int minute, second;
 		minute = secs / 60;
@@ -37,15 +39,17 @@ public class WinScreen extends JFrame {
 				time += minute + ":" + second;
 		}
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(WinScreen.class.getResource("/icons/equals.png")));
-		setTitle("NERDLE");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(WinScreen.class.getResource("/icons/calculator (1).png")));
+		setTitle("nerdle");
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("ANA SAYFA");
+		JButton btnNewButton = new JButton(" MAIN SCREEN");
+		btnNewButton.setBackground(new Color(153, 204, 204));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -61,8 +65,8 @@ public class WinScreen extends JFrame {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(WinScreen.class.getResource("/icons/home (1).png")));
-		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		btnNewButton.setBounds(130, 159, 155, 43);
+		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 13));
+		btnNewButton.setBounds(140, 167, 155, 43);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("6 – 19011040 Engin Memiş – 20011040 Elif Sena Yılmaz");
@@ -70,15 +74,15 @@ public class WinScreen extends JFrame {
 		lblNewLabel_1.setBounds(10, 240, 294, 13);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel = new JLabel("TEBRİKLER!");
+		JLabel lblNewLabel = new JLabel("CONGRATULATIONS!");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
-		lblNewLabel.setBounds(130, 46, 155, 43);
+		lblNewLabel.setBounds(100, 52, 235, 43);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("DENKLEMİ BULMA SÜRENİZ: " + time);
+		JLabel lblNewLabel_2 = new JLabel("YOUR TIME:  " + time);
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.BOLD, 17));
-		lblNewLabel_2.setBounds(73, 99, 286, 28);
+		lblNewLabel_2.setBounds(140, 106, 168, 28);
 		contentPane.add(lblNewLabel_2);
 	}
 }

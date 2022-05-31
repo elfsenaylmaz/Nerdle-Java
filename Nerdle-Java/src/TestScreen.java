@@ -14,35 +14,24 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class TestScreen extends JFrame {
 	private JPanel contentPane;
 	private Generator generator;
 	private String equation;
-	//kaldırılacak
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TestScreen frame = new TestScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	public TestScreen() {
+		setResizable(false);
 		
 		generator = new Generator();
 		equation = generator.generateEquation();
 		
-		setTitle("NERDLE");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TestScreen.class.getResource("/icons/equals.png")));
+		setTitle("nerdle");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TestScreen.class.getResource("/icons/calculator (1).png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -53,18 +42,20 @@ public class TestScreen extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel equationLabel = new JLabel(equation);
-		equationLabel.setFont(new Font("Century Gothic", Font.BOLD, 15));
+		equationLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
 		equationLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		equationLabel.setBounds(85, 62, 273, 39);
+		equationLabel.setBounds(82, 41, 273, 39);
 		contentPane.add(equationLabel);
 		
 		JLabel digitLabel = new JLabel(equation.length() + " Digits");
 		digitLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		digitLabel.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		digitLabel.setBounds(85, 101, 273, 25);
+		digitLabel.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		digitLabel.setBounds(82, 80, 273, 25);
 		contentPane.add(digitLabel);
 		
-		JButton btnNewButton = new JButton("YENİDEN ÜRET");
+		JButton btnNewButton = new JButton(" GENERATE AGAIN");
+		btnNewButton.setBackground(new Color(153, 204, 204));
+		btnNewButton.setHorizontalAlignment(SwingConstants.LEADING);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				equation = generator.generateEquation();
@@ -72,11 +63,14 @@ public class TestScreen extends JFrame {
 				digitLabel.setText(equation.length() + " Digits");			
 			}
 		});
-		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		btnNewButton.setBounds(152, 136, 140, 50);
+		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 13));
+		btnNewButton.setBounds(137, 120, 155, 39);
 		contentPane.add(btnNewButton);
 		
-		JButton mainScreenButton = new JButton("");
+		JButton mainScreenButton = new JButton("  MAIN SCREEN");
+		mainScreenButton.setBackground(new Color(153, 204, 153));
+		mainScreenButton.setHorizontalAlignment(SwingConstants.LEADING);
+		mainScreenButton.setFont(new Font("Century Gothic", Font.BOLD, 13));
 		mainScreenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -89,11 +83,8 @@ public class TestScreen extends JFrame {
 				dispose();
 			}
 		});
-		mainScreenButton.setIcon(new ImageIcon(TestScreen.class.getResource("/icons/home.png")));
-		mainScreenButton.setBounds(10, 10, 30, 30);
+		mainScreenButton.setIcon(new ImageIcon(TestScreen.class.getResource("/icons/home (1).png")));
+		mainScreenButton.setBounds(137, 169, 155, 39);
 		contentPane.add(mainScreenButton);
-		
-		
 	}
-
 }

@@ -96,19 +96,19 @@ public class MainScreen extends JFrame {
 		closeButton.setBounds(846, 10, 30, 30);
 		contentPane.add(closeButton);
 		
-		JLabel lblNewLabel_2 = new JLabel("YARIDA BIRAKILAN OYUN SAYISI:");
+		JLabel lblNewLabel_2 = new JLabel("NUMBER OF ABANDONED GAMES:");
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(305, 154, 235, 20);
+		lblNewLabel_2.setBounds(288, 154, 254, 20);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("BAŞARISIZLIKLA SONUÇLANAN OYUN SAYISI:");
+		JLabel lblNewLabel_3 = new JLabel("NUMBER OF UNSUCCESSFUL GAMES:");
 		lblNewLabel_3.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		lblNewLabel_3.setBounds(219, 184, 328, 20);
+		lblNewLabel_3.setBounds(275, 184, 272, 20);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("BAŞARIYLA TAMAMLANAN OYUN SAYISI:");
+		JLabel lblNewLabel_4 = new JLabel("NUMBER OF SUCCESSFUL GAMES:");
 		lblNewLabel_4.setFont(new Font("Century Gothic", Font.BOLD, 15));
-		lblNewLabel_4.setBounds(250, 214, 294, 20);
+		lblNewLabel_4.setBounds(297, 214, 247, 20);
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("TAMAMLANAN OYUNLARIN ORTALAMA SATIR SAYISI:");
@@ -227,7 +227,7 @@ public class MainScreen extends JFrame {
 		testButton.setBounds(375, 497, 120, 50);
 		contentPane.add(testButton);
 		
-		JLabel lblNewLabel_7 = new JLabel("İSTATİSTİKLER");
+		JLabel lblNewLabel_7 = new JLabel("STATISTICS");
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_7.setIcon(new ImageIcon(MainScreen.class.getResource("/icons/stats.png")));
 		lblNewLabel_7.setForeground(new Color(153, 153, 255));
