@@ -17,6 +17,15 @@ import java.awt.Toolkit;
 public class GameScreen extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
+	/* Daha önceden save edilmiş bir oyun var mı diye kontrol edilir. Varsa o equation için yoksa yeni üretilen equationın uzunluğuna göre 
+	 * en aşağıda bulununan ve isimleri createXDigitField olan üç metodla GUI üzerinde textField matrisi oluşturulur.
+	 * Eski oyun vassa matrisin içi eski matrise eşitlenir, böylece eski oyun kaldığı yerden devam eder.
+	 * Timer objesiyle çalışan timerTask değişkeniyle ekrana timer yazdırılır ve her saniye güncellenmesi sağlanır
+	 * Bu sınıf Gampelay sınıfıyla birlikte çalışır. Her butonun actionPerformed metodları için Gameplay sınıfında o butonla ilişkili
+	 * olan metod çalıştırılır.
+	 * Hangi textFieldın aktif olduğunu bulmak için focuslarına bakılmıştır. Butonların focus olmasını engellenmiştir.
+	 * */
+	
 	private Gameplay gameplay;
 	private Generator generator;
 	private String equation;
@@ -27,7 +36,6 @@ public class GameScreen extends JFrame {
 	private Statistics statistics;
 	
 	public GameScreen(Statistics statistics) {
-		//////////////////////////////////YENİ OYUN MU ESKİ OYUN MU PARAMETRE İLE KONTROL EDİLECEK
 		this.statistics = statistics;
 		generator = new Generator();
 		
@@ -321,7 +329,7 @@ public class GameScreen extends JFrame {
 		tahminEt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameplay.guessButtonActivate();
-				if(gameplay.isGameOver())
+				if(gameplay.isGameOver())           // Oyun bittiyse timer durdurulur.
 					timer.cancel();
 			}
 		});
