@@ -23,6 +23,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 import java.awt.event.ActionEvent;
 
 public class MainScreen extends JFrame {
@@ -127,12 +131,23 @@ public class MainScreen extends JFrame {
 		basariliOyun.setBounds(550, 214, 105, 20);
 		contentPane.add(basariliOyun);
 		
-		JLabel satirOyun = new JLabel("" + statistics.getAvRowCount());
+		String pattern = "#.###";
+		DecimalFormat decimalFormat = new DecimalFormat(pattern);
+
+		String format = decimalFormat.format(statistics.getAvRowCount());
+		
+		JLabel satirOyun = new JLabel(format);
 		satirOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		satirOyun.setBounds(550, 244, 105, 20);
 		contentPane.add(satirOyun);
 		
-		JLabel sureOyun = new JLabel("" + statistics.getAvTimeInSec());
+		TimeZone tz = TimeZone.getTimeZone("UTC");
+		SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+		df.setTimeZone(tz);
+		String time = df.format(new Date((int)statistics.getAvTimeInSec()*1000L));
+		
+		//JLabel sureOyun = new JLabel("" + statistics.getAvTimeInSec());
+		JLabel sureOyun = new JLabel(time);
 		sureOyun.setFont(new Font("Century Gothic", Font.BOLD, 15));
 		sureOyun.setBounds(550, 274, 105, 20);
 		contentPane.add(sureOyun);
