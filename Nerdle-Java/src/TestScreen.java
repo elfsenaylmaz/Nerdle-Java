@@ -4,7 +4,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -14,6 +13,9 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 public class TestScreen extends JFrame {
+	/* Kullanıcı yendien üret butonuna basarak istediği kadar denklem görüntüleyebilir.
+	 * Ana ekran butonuna basarak geri döner.
+	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Generator generator;
@@ -75,8 +77,7 @@ public class TestScreen extends JFrame {
 					MainScreen frame = new MainScreen();
 					frame.setVisible(true);
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "Error!");
-					//e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "An exception has occured while openning main screen!");
 				}
 				dispose();
 			}
