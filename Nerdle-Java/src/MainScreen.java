@@ -43,13 +43,16 @@ public class MainScreen extends JFrame {
 			file = new FileInputStream("statistics.txt");
 			in = new ObjectInputStream(file);
 			statistics = (Statistics)in.readObject();
-			
+			in.close();
+			file.close();
 		} catch (Exception e) {
 			try {
 				fileInit = new FileOutputStream("statistics.txt");
 				inInit = new ObjectOutputStream(fileInit);
 				statistics = new Statistics();
 				inInit.writeObject(statistics);
+				inInit.close();
+				fileInit.close();
 			}
 			catch(Exception ex) {
 				e.printStackTrace();

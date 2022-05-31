@@ -42,8 +42,8 @@ public class GameScreen extends JFrame {
 		gameplay = new Gameplay(equation, statistics);
 		timer = new Timer();
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GameScreen.class.getResource("/icons/equals.png")));
-		setTitle("NERDLE");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GameScreen.class.getResource("/icons/calculator (1).png")));
+		setTitle("nerdle");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 900, 700);
 		contentPane = new JPanel();
@@ -74,9 +74,9 @@ public class GameScreen extends JFrame {
 			
 		gameplay.setTxtMatris(txtMatris);
 		
-		JLabel timerLabel = new JLabel("timer ekle");
+		JLabel timerLabel = new JLabel("");
 		timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		timerLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 14));
+		timerLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 20));
 		timerLabel.setBounds(740, 22, 121, 39);
 		contentPane.add(timerLabel);
 		
@@ -335,7 +335,7 @@ public class GameScreen extends JFrame {
 		JButton sonraBitir = new JButton("");
 		sonraBitir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameplay.sonraBitirButtonActivate();
+				gameplay.finishLaterButtonActivate();
 				dispose();
 			}
 		});
